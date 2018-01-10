@@ -1,0 +1,158 @@
+// DEFAULTS
+// ==========================================================================
+
+// Based from
+// https://github.com/inuitcss/settings.defaults/blob/master/_settings.defaults.scss
+
+// Based from
+// bower/bower-bourbon/addons/_font-family.scss
+
+$font-helvetica:     Helvetica, Roboto, Arial, sans-serif;
+$font-arial-narrow:   'Arial Narrow', 'Gill Sans MT', 'Franklin Gothic Medium', Arial, sans-serif;
+$font-futura:         "futura-pt", $font-arial-narrow;
+$font-japanese:      "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+$site-font:           'Adobe Garamond Pro';
+
+// High-level base settings.
+
+$base-font-family: $font-helvetica !default;
+$base-font-weight: normal      !default;
+$xsmall-font-size:  12px         !default;
+$small-font-size:  14px         !default;
+$base-font-size:   16px         !default;
+$base-line-height: 24px         !default;
+$base-site-width:  1024px       !default;
+
+$big-font-size:   20px         !default;
+
+$base-header-utility-font-size: 12px         !default;
+$base-heading-font-family:      $font-helvetica !default;
+$base-heading-font-weight:      bold         !default;
+$base-heading-font-style:       null         !default;
+$base-heading-text-transform:   null         !default;
+$base-menu-primary-font-family: $font-helvetica !default;
+$base-menu-primary-font-weight: semibold     !default;
+$base-menu-primary-font-style:  null         !default;
+$base-footer-nav-font-family:   $font-helvetica !default;
+$base-footer-nav-font-style:    null         !default;
+
+// These variables are framework variables, sourced from variables defined
+// above. Feel free to use these variables throughout your project, but do not
+// modify or reassign them.
+
+$base-spacing-unit:           $base-line-height;
+$base-spacing-unit--small:    round($base-spacing-unit / 2);
+$base-spacing-unit--large:    round($base-spacing-unit * 2);
+
+
+//Animation CSS duration
+$default-duration: 0.5s;
+$fast-duration: 0.25s;
+$slow-duration: 1s;
+$default-effect: ease-in-out;
+$default-effect-ease: ease;
+
+
+//
+// Z-Layer Variables
+//
+// These key/value pairs will be used by mixins/_layering.scss.
+// 
+// All z-index definitions will be stored in a Sass map
+// and managed here to get a perfect stacking overview.
+//
+
+$z-layers: (
+    "header" : 999,
+    "dropdown": 500,
+    "modal": (
+        "base": 100,
+        "close": 101
+    ),
+    "default": 1,
+    "below": -1
+);
+
+
+@mixin _assert-ascending($map, $map-name) {
+  $prev-key: null;
+  $prev-num: null;
+  @each $key, $num in $map {
+    @if $prev-num == null {
+      // Do nothing
+    } @else if not comparable($prev-num, $num) {
+      @warn "Potentially invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} whose unit makes it incomparable to #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    } @else if $prev-num >= $num {
+      @warn "Invalid value for #{$map-name}: This map must be in ascending order, but key '#{$key}' has value #{$num} which isn't greater than #{$prev-num}, the value of the previous key '#{$prev-key}' !";
+    }
+    $prev-key: $key;
+    $prev-num: $num;
+  }
+}
+
+// Replace `$search` with `$replace` in `$string`
+// @author Hugo Giraudel
+// @param {String} $string - Initial string
+// @param {String} $search - Substring to replace
+// @param {String} $replace ('') - New value
+// @return {String} - Updated string
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@mixin _assert-starts-at-zero($map) {
+  $values: map-values($map);
+  $first-value: nth($values, 1);
+  @if $first-value != 0 {
+    @warn "First breakpoint in `$grid-breakpoints` must start at 0, but starts at #{$first-value}.";
+  }
+}
+
+$enable-grid-classes:       true !default;
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints);
+
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+) !default;
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:                12 !default;
+$grid-gutter-width:           30px !default;
+
+
+
+

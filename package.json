@@ -1,0 +1,49 @@
+{
+	"name": "project-name",
+	"version": "0.0.1",
+	"description": "A WordPress/Gulp/Bower/Sass starter kit.",
+	"keywords": [
+		"wordpress",
+		"gulp",
+		"bower",
+		"sass"
+	],
+	"scripts": {
+		"postinstall": "bower install"
+	},
+	"author": "FB",
+	"license": "GNU General Public Licence 2.0",
+	"main": "index.js",
+	"private": true,
+	"devDependencies": {
+		"browser-sync": "^2.13.1",
+		"del": "^1.2.0",
+		"glob": "^5.0.14",
+		"gulp": "^3.9.1",
+		"gulp-if": "^2.0.1",
+		"gulp-autoprefixer": "^3.1.0",
+		"gulp-bower": "0.0.10",
+		"gulp-changed": "^1.2.1",
+		"gulp-concat": "^2.3.4",
+		"gulp-filter": "^3.0.0",
+		"gulp-folders": "^1.0.0",
+		"gulp-import-css": "^0.1.2",
+		"gulp-include": "^2.0.2",
+		"gulp-minify-css": "^1.2.0",
+		"gulp-imagemin": "^3.4.0",
+		"gulp-rename": "^1.2.0",
+		"gulp-replace": "^0.5.3",
+		"gulp-sass": "^2.3.2",
+		"gulp-sftp": "^0.1.5",
+		"gulp-uglify": "^1.5.4",
+		"lazypipe": "^1.0.1",
+		"merge-stream": "^0.1.6",
+		"require-dir": "^0.3.0",
+		"run-sequence": "^1.1.2",
+		"time-require": "^0.1.2",
+		"yargs": "^3.16.1"
+	},
+	"dependencies": {
+		"gulp-install": "^1.1.0"
+	}
+}

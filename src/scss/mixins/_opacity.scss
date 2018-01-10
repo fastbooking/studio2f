@@ -1,0 +1,18 @@
+// 
+// opacity mixin
+// ----------------
+// 
+// This mixin is used for managing your opacity.
+// 
+// Usage:
+// .className {
+// 	@include opacity(0.5);
+// }
+// 
+// 
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  // IE8 filter
+  $opacity-ie: ($opacity * 100);
+  filter: #{alpha(opacity=$opacity-ie)};
+}

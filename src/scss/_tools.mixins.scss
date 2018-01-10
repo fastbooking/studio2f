@@ -1,0 +1,94 @@
+// MIXINS
+// ==========================================================================
+
+// Utilities
+@import "mixins/breakpoints";
+@import "mixins/visibility";
+@import "mixins/text-truncate";
+@import "mixins/opacity";
+
+
+// Components
+@import "mixins/animates";
+@import "mixins/fonts";
+@import "mixins/bgs";
+@import "mixins/borders";
+@import "mixins/buttons";
+@import "mixins/images";
+@import "mixins/fixed-ratiobox";
+@import "mixins/triangle";
+
+// Layout
+@import "mixins/clearfix";
+@import "mixins/layering";
+
+// Others
+
+// Apply ‘attention’ styles in one go.
+@mixin attention($self: false) {
+	@if($self != false) {
+		&,
+		&:hover,
+		&:active,
+		&:focus {
+			@content;
+		}
+	}
+
+	@else {
+		&:hover,
+		&:active,
+		&:focus {
+			@content;
+		}
+	}
+}
+
+@mixin margin($location: bottom, $rem: 0.8rem) {
+	margin-#{$location}: $base-spacing-unit;
+	margin-#{$location}: ($base-spacing-unit / $base-font-size) * $rem;
+}
+
+
+@mixin lang-normal-case() {
+	@at-root {
+		html[lang='zh-hans'] &,
+		html[lang='zh-hant'] &,
+		html[lang="ja"] & {
+			text-transform: none;
+		}
+	}
+}
+
+@mixin okr-slick-dots( $higlight-color: $color-gray ) {
+
+	& .slick-dots li {
+		width: 10px;
+		height: 10px;
+	}
+
+	& .slick-dots li button {
+		background: lighten( $color-gray-light, 25 );
+		width: 15px;
+		height: 15px;
+		margin: 0;
+		border-radius: 50%;
+	}
+
+	& .slick-dots li button:before {
+		display: none;
+	}
+
+	& .slick-dots li.slick-active button {
+		background: $higlight-color;
+	}
+
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+// COLORS
+// ==========================================================================
+
+//theme
+$color-brand-1:				#c2142a; //red
+$color-gray-body: 			#f7f7f7;
+$color-red-logo:			#dc4e41;
+$color-gray-text: 		#4a4a4a;
+$color-warm-grey:       #7f7874;
+
+// Based from
+// https://github.com/csswizardry/csswizardry.github.com/blob/master/css/_settings.colors.scss
+
+$color-gray-darker:  lighten(#000, 13.5%) !default;      // #222
+$color-gray-dark:    lighten(#000, 20%)   !default;      // #333
+$color-gray:         lighten(#000, 33.5%) !default;      // #555
+$color-gray-light:   lighten(#000, 60%)   !default;      // #999
+$color-gray-lighter: lighten(#000, 93.5%) !default;      // #eee
+$color-gray-ccc:     lighten($color-gray-light, 20%) !default; // #ccc
+
+// Base
+$color-black: 			#000;
+$color-white: 			#fff;
+$color-green:           #00754a;
+$color-pale-green:      #008e80;
+$color-brown:           #725a37;
+$color-red:             #d52631;
+
+
+$color-base-bg:         #fff                !default;
+$color-base-txt:        $color-gray-dark    !default;
+$color-base-link:       $color-brand-1        !default;
+$color-base-link-hover: $color-gray-dark    !default;
+
+$color-brand-primary:     $color-green      !default;
+$color-brand-secondary:   $color-green      !default;
+
+$color-primary-btn-bg:    $color-brand-1 !default;
+$color-modal-link-txt:    #fff              !default;
+$color-modal-link-txt-hl: $color-brand-1 !default;
+$color-heading-txt:       black             !default;
+
+$color-header-utility-txt: $color-gray-ccc     !default;
+$color-header-utility-bg:  black               !default;
+$color-header-utility-bga: rgba( black, 0.8 )  !default;
+$color-header-nav-bg:      white               !default;
+$color-header-nav-bga:     rgba( white, 0.80 ) !default;
+$color-header-nav-bga-min: rgba( white, 0.95 ) !default;
+$color-menu-primary-txt:   $color-gray-dark    !default;
+$color-sign-in:            $color-brand-1   		!default;
+
+$color-qs-field:     #f3f3f3          !default;
+
+$color-footer-title: $color-gray-dark !default;
+
+$color-brand-offer-bg:          white !default;
+$color-brand-offer-item-bg:     null  !default;
+$color-brand-offer-item-txt:    null  !default;
+$color-brand-offer-item-btn-bg: null  !default;
+$color-brand-offer-item-btn-txt:null  !default;

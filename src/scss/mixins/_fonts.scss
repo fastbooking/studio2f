@@ -1,0 +1,125 @@
+// 
+// font-smoothing mixin
+// --------------------
+// 
+// This mixin is used for better font-rendering on OS X,
+// because due to its sub-pixel antialiasing algorithm
+// OS X tends to render light text on dark backgrounds too bold. 
+// 
+// Sample input:
+// .light-on-dark {
+//     @include font-smoothing(on);
+// }
+// 
+// .dark-on-light {
+//     @include font-smoothing(off);
+// }
+// 
+// Sample ounput:
+// .light-on-dark {
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+// }
+// 
+// .dark-on-light {
+//     -webkit-font-smoothing: subpixel-antialiased;
+//     -moz-osx-font-smoothing: auto;
+// }
+// 
+// text-overflow mixin
+// --------------------
+// 
+// 
+//
+// font-weight mixin
+// -------------------- 
+// 
+// 
+//
+// font-size mixin
+// -------------------- 
+//
+// 
+// 
+//@include font-face($style-name, $file, $family, $category);
+
+@mixin font-face($style-name, $file, $family, $category:"") {
+    $filepath: "fonts/" + $family + "/" + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+    }
+    %#{$style-name} {
+        font: {
+            @if $category != "" {
+                family: "#{$style-name}", #{$category};
+            }
+            @else {
+                family: "#{$style-name}";
+                weight: normal;
+            }
+        }
+    }
+}
+
+
+@mixin font-smoothing($value) {
+    @if $value == "on" {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+	
+    @if $value == "off" {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+    }
+}
+
+
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin font-weight($font-weight) {
+	@if ($font-weight == "light") {
+		font-weight: 300;
+	}
+	@if ($font-weight == "regular") {
+		font-weight: 400;
+	}
+	@if ($font-weight == "semibold") {
+		font-weight: 500;
+	}
+	@if ($font-weight == "bold") {
+		font-weight: 700;
+	}
+}
+
+
+@mixin font-size($font-size, $line-height: auto) {
+
+	font-size: $font-size;
+	font-size: ($font-size / $base-font-size) * 1rem;
+	@if $line-height == auto {
+		line-height: ceil($font-size / $base-line-height) * ($base-line-height / $font-size);
+	}
+
+	@else {
+
+		@if (type-of($line-height) == number or $line-height == inherit or $line-height == normal) {
+			line-height: $line-height;
+		}
+
+		@elseif ($line-height != none and $line-height != false) {
+			@warn "D’oh! ‘#{$line-height}’ is not a valid value for `line-height`."
+		}
+
+	}
+
+}
+
+
+
