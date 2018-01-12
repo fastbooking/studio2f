@@ -1,5 +1,5 @@
+#=include gmap.js
 #=include fbtheme-init.js
-
 
 #=include ../../bower/jquery-ui/ui/core.js
 #=include ../../bower/jquery-ui/ui/effect.js

@@ -25,6 +25,8 @@
 		var s = document.getElementsByTagName('script')[0];
 		s.parentNode.insertBefore(wf, s);
   	})(); 
+	var	theme_dir = '<?php echo get_stylesheet_directory_uri(); ?>';
+
 </script>
 <!-- END Add google fonts -->
 </head>

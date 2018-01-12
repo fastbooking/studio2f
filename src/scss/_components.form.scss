@@ -37,8 +37,8 @@ button {background: transparent; outline: 0 none;}
 }
 
 .btn-default {
-	color: $color-gray-dark;
-	border: 1px solid $color-gray-dark;
+	color: $color-gray-light;
+	border: 1px solid $color-gray-light;
 }
 .btn-red {
 	@include btn-theme($color-red-logo);
