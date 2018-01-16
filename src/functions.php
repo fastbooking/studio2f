@@ -271,9 +271,9 @@ require_once get_template_directory() . '/inc/faw-assets.php';
 // // require_once get_template_directory() . '/inc/save-post-tpl-global-offers.php';
 
 // /**
-//  * Custom Public Methods
+//  * Custom Post hotel
 //  */
-// require_once get_template_directory() . '/inc/fbtheme-utilities.php';
+require_once get_template_directory() . '/inc/custom-post-hotel.php';
 
 // /**
 //  * wp_footer hooks

@@ -857,7 +857,7 @@ function initMap(div) {
     // End
 
     var hotel_infowindow = new google.maps.InfoWindow({
-      content       : map_data.html
+        content : map_data.html
     });
     window.hotel_infowindow = hotel_infowindow;
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
