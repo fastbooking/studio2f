@@ -1,6 +1,6 @@
 // FORM
 // ==========================================================================
-$off-wht: rgba($color-black, 0.3);
+$off-wht: $color-gray-ccc;
 $btn-color-text: $color-white;
 
 textarea,
@@ -9,13 +9,17 @@ input[type="text"] {
 	border-radius: 0;
 	background-clip: padding-box;
 }
-input::-webkit-input-placeholder {font-family: $font-helvetica; color: $color-gray-ccc; text-transform: uppercase;}
-input:-ms-input-placeholder {font-family: $font-helvetica; color: $color-gray-ccc; text-transform: uppercase;}
-input:-moz-placeholder {font-family: $font-helvetica; color: $color-gray-ccc; text-transform: uppercase;}
-input::-moz-placeholder {		
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {font-family: $font-helvetica; color: $color-gray-ccc; text-transform: uppercase;}
+input:-ms-input-placeholder,
+textarea::-ms-input-placeholder {font-family: $font-helvetica; color: $color-gray-ccc; text-transform: uppercase;}
+input:-moz-placeholder,
+textarea:-moz-placeholder{font-family: $font-helvetica; color: $color-gray-ccc; text-transform: uppercase;}
+input::-moz-placeholder,
+textarea::-moz-placeholder  {		
 	font-family: $font-helvetica;
 	color: $color-gray-ccc;	
-	text-transform: uppercase;	
+	text-transform: uppercase;
 }
 
 textarea {
@@ -34,6 +38,28 @@ button {background: transparent; outline: 0 none;}
 	letter-spacing: 2px;
 	font-weight: 400;
 	text-align: center;
+
+	&:hover,
+	&:focus {
+		outline: 0 none;
+	}
+
+	&-reset {
+		margin: 0 20px;
+		background: url(img/border-double.png) repeat-x 0 100%;
+		color: $color-brand-1;
+		padding: 0;
+		border: 0 none;
+
+		&:hover,
+		&:focus {
+			background-color: transparent;
+			color: $color-brand-1;
+			border: 0 none;
+			background: url(img/border-double.png) repeat-x 0 100%;
+			box-shadow: none;
+		}
+	}
 }
 
 .btn-default {
@@ -50,18 +76,25 @@ button {background: transparent; outline: 0 none;}
 	margin-bottom: 3px;
 }
 
-.form-row {
+.form__row {
 	position: relative;
+	padding-bottom: 20px;
+
+	@include media-breakpoint-down(md) {
+		[class*="col-"]:first-child {
+			margin-bottom: 20px;
+		}
+	}
 }
 
-.form-input {
+.form__input {
   width: 100%;
   height: 48px;  
   font-family: $font-helvetica;
-  border: 0 none;  
   background: $color-white;
   font-size: $small-font-size;
   padding: 5px 10px;
+  border: solid 1px $color-gray-ccc;
 
 
   &.is-input-readonly {
@@ -87,10 +120,82 @@ button {background: transparent; outline: 0 none;}
   } 
   
 }
+
+.form__area {
+	@extend .form__input;
+
+	height: 100px;
+}
+
+.custom-select {
+  width: 100%;
+  position: relative;
+  border: 1px solid $color-gray-ccc;
+  height: 48px;
+  color: $color-gray-ccc;
+  background: $color-white;
+
+  &:after {
+  	position: absolute;
+  	top: -1px;
+  	right: 0;
+  	content: "\e904";
+  	font-family: 'icomoon';
+  	width: 48px;
+  	height: 48px;
+  	line-height: 24px;
+  	color: $color-white;
+  	background-color: $color-red-logo;
+  	font-size: 10px;
+  	padding: 15px 12px;
+  	text-align: center;
+  }
+
+  select {
+  	padding: 5px 40px 5px 10px;
+  	border:none;
+  	background-color: transparent;
+  	display: block;
+  	height: 48px;
+  	width: 100%;
+  	position: absolute;
+  	z-index: 2;
+  	appearance: none;
+  	box-shadow: 0 none;
+  	text-transform: uppercase;
+  	color: $color-gray-ccc;
+
+  	&:hover,
+  	&:focus {
+  		outline: 0 none;
+  		box-shadow: 0 none;
+  	}
+  }
+
+  &:hover,
+  &:focus {
+  	select {
+  		outline: 0 none;
+  		box-shadow: 0 none;
+  	}
+  }
+}
+
+.form__row--action {
+	text-align: center;
+
+	@include media-breakpoint-up(lg) {
+		text-align: right;
+	}
+}
+
+.btn-send {
+	min-width: 140px;
+}
+
 .header-qs_btn {
 	display: block;
 	margin: 0 auto;
-	
 }
 .header-qs {
 	position: absolute;

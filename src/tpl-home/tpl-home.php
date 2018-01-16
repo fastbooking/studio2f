@@ -11,6 +11,8 @@ get_header(); ?>
     get_template_part('template-parts/boxes/home', 'offers');
     get_template_part('template-parts/boxes/home', 'service');
     get_template_part('template-parts/boxes/home', 'location');
+    get_template_part('template-parts/boxes/home', 'corporate');
+    get_template_part('template-parts/boxes/home', 'contact');
 ?>
 </div>
 

@@ -4,7 +4,7 @@ module.exports = {
 	bower:   './bower/',
 	dev:     './build-dev/',
 	prod:    './build-prod/',
-	proxy:   'amaris.dev',
+	proxy:   'amz163.dev/studio2let',
 	site: {
 		
 	},
