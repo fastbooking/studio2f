@@ -2,6 +2,40 @@
 /**
  * Add Base JS
  */
+if ( ! function_exists( 'get_websdk_locale' ) ) {
+	function get_websdk_locale() {
+		switch (ICL_LANGUAGE_CODE) {
+			case 'vi':
+				return 'vi_VN';
+			case 'cn':
+				return 'zh_CN';
+			case 'jp':
+				return 'ja_JP';
+			case 'tw':
+				return 'zh_HK';
+			default:
+				return 'en_GB';
+		}
+	}
+}
+
+if ( ! function_exists( 'get_websdk_currency' ) ) {
+	function get_websdk_currency() {
+		switch (ICL_LANGUAGE_CODE) {
+			case 'vi':
+				return 'VND';
+			case 'cn':
+				return 'RMB';
+			case 'jp':
+				return 'YEN';
+			case 'tw':
+				return 'TWD';
+			default:
+				return 'USD';
+		}
+	}
+}
+
 if ( ! function_exists( 'hh_enqueue_libs_js' ) ) {
 	function hh_enqueue_libs_js() {
 		$js_path = "//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui{$GLOBALS['rojak_templates_minify']}.js";
@@ -14,3 +48,4 @@ if ( ! function_exists( 'hh_enqueue_libs_js' ) ) {
 	}
 }
 add_action( 'rojak_tpl_before_core_js', 'hh_enqueue_libs_js' );
+

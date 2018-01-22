@@ -1,14 +1,15 @@
+<?php global $data; ?>
 <header class="header">
     <div class="header-top">
-        <a class="header-top__logo" href="#" title="Studio 2 Let">
-            <i class="icon-logo"></i>
+        <a class="header-top__logo" href="<?php echo $data['hotel_url']; ?>" title="<?php echo $data['hotel_name']; ?>">
+            <img src="<?php echo $data['logo']['url'] ?>" alt="<?php echo $data['hotel_name']; ?>" />
         </a>
         <div class="header-top__menu">
             <div class="header-top__menu--item header-top__menu--language" data-chosen-lang>
                 <?php echo ICL_LANGUAGE_CODE; ?>
                 <i class="icon-select"></i>
             </div>
-            <div class="header-top__menu--item header-top__menu--mail">
+            <div class="header-top__menu--item header-top__menu--mail" data-scroll-to="Contact_form">
                 <i class="icon-mail"></i>
             </div>
         </div>

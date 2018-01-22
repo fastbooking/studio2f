@@ -1,8 +1,7 @@
-<section class="block">
+<section class="block" id="Contact_form">
     <div class="container">
         <h3 class="block-title">Contact us</h3>
         <div class="block-form">
-            
             <form action="#" class="form form--contact">
                 <div class="row form--contact__info">
                     <div class="col">

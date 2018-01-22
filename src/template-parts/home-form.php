@@ -1,11 +1,21 @@
+<?php 
+    $args = array(
+        'offset'      => 0,
+        'post_type'   => 'hotel_post',
+    );
+    $myhotels = get_posts( $args );
+?>
 <div class="header-qs">
     <div class="header-qs_fields">
         <div class="qs__field qs__select">
             <select class="js_qs__sites" name="Hotelnames">
                 <option default>Select Property</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <?php 
+                    foreach ( $myhotels as $hotel ) {
+                        $title = $hotel->post_title;
+                        echo '<option value="'.$title.'">'.$title.'</option>';
+                    }
+                ?>
             </select>  
         </div>
         <div class="qs__field qs__datepicker qs__field-checkin">

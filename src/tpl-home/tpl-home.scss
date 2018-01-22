@@ -7,7 +7,6 @@
 @import "common";
 .block-form {
 	margin: 0 auto;
-
     @include media-breakpoint-up(lg) {
     	-ms-flex: 0 0 66.66667%;
 	    flex: 0 0 66.66667%;
@@ -23,6 +22,9 @@
 	text-transform: uppercase;
 	font-weight: 400;
 	color: rgba($color-black, 0.5);
+}
+[data-scroll-to] {
+	cursor: pointer;
 }
 /* --Studio2Let-- */
 

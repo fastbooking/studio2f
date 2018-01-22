@@ -9,6 +9,19 @@
 require_once( trailingslashit( get_template_directory() ) . 'library/rojak.php' );
 new Rojak();
 
+define('TEMPLATE_PREFIX', 'marcus');
+
+
+function add_socials_fb_options($fields) {
+    $fields[]=array (
+      'id' 	=> 'instagram',
+      'type' 	=> 'text',
+      'title' => 'instagram',
+    );
+	return $fields;
+}
+add_filter('fbcmsv2_redux_hotel_field_group_social' , 'add_socials_fb_options');
+
 add_action( 'after_setup_theme', 'fbtheme_setup' );
 
 if ( ! function_exists( 'fbtheme_setup' ) ) {

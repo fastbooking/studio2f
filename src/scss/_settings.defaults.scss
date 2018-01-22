@@ -45,6 +45,7 @@ $base-spacing-unit:           $base-line-height;
 $base-spacing-unit--small:    round($base-spacing-unit / 2);
 $base-spacing-unit--large:    round($base-spacing-unit * 2);
 
+$font-demi: 600;
 
 //Animation CSS duration
 $default-duration: 0.5s;

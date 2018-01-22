@@ -1,28 +1,26 @@
+<?php 
+    $service_title = rwmb_meta('ser_title');
+    $service_content1 = rwmb_meta('ser_mid_content');
+    $service_content2 = rwmb_meta('ser_content');
+?>
+
 <section class="block">
     <div class="container">
         <div class="row justify-content-md-center">
             
             <div class="col-md-8 center">
-                <h3 class="block-title">Service</h3>
+                <h3 class="block-title"><?php echo $service_title; ?></h3>
+                <?php if ($service_content1) : ?>
                 <div class="block-paragraph">
-                    <p><strong>Fully fitted kitchens</strong> which include top of the range over and hob, microwave, fridge and freezer, <strong>Flat screen TVs, DVD players, Persional safe, wooden floors and en-suite bathrooms.</strong> The style of our apartments grants you greater flexibility during your stay whilst simultaneoursly providing a <strong>high level of quality and comfort.</strong></p>
+                    <?php echo $service_content1; ?>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
+        <?php if ($service_content2) : ?>
         <div class="row">
-            <div class="col-md-6">
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>
-            </div>
-            <div class="col-md-6">
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>
-                <p>Digital TV and several Sky channels included, Free Wifi Ultra fast 100 Mb (Fiber Optics) Internet access and main door intercom system.</p>    
-            </div>
+            <?php echo $service_content2; ?>
         </div>
+        <?php endif; ?>
     </div>
-    
 </section>
