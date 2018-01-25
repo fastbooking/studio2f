@@ -9,8 +9,8 @@
 require_once( trailingslashit( get_template_directory() ) . 'library/rojak.php' );
 new Rojak();
 
-define('TEMPLATE_PREFIX', 'marcus');
-
+define('TEMPLATE_PREFIX', 'studio2let');
+define('WEBSDK_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOiJeLiokIiwicHJvcGVydGllcyI6InVrbG9uMjQ5NzQiLCJncm91cHMiOiJeKHVrbG9uMjAzODl8dWtsb24yNDk3NCkkIiwiZm9yIjoib2ZmZXJzIiwiaWF0IjoxNTE2NzkxMDk4LCJqdGkiOiJiYmM5NGJlZC1jZDg1LTQzNjMtYTVlNC1lYTJkMTQ0MzA2ZmQifQ.Cw1moquROuUWNbZqsy46E9mGaJ41ah2Pwfd-jl79l68');
 
 function add_socials_fb_options($fields) {
     $fields[]=array (
@@ -135,7 +135,6 @@ if (!function_exists('fbtheme_cc_mime_types')) {
 }
 add_filter('upload_mimes', 'fbtheme_cc_mime_types');
 
-
 /**
  * Disable emoji feature introduced in Wordpresss 4.2
  */
@@ -226,7 +225,6 @@ if ( ! function_exists( 'fbtheme_yahoo_weather' ) ) {
 	}
 }
 add_action( 'rojak_tpl_after_core_js', 'fbtheme_yahoo_weather' );
-
 
 /**
  * Image sizes
@@ -333,7 +331,7 @@ require_once get_template_directory() . '/inc/custom-post-hotel.php';
 //  * Metabox
 //  */
 require_once get_template_directory() . '/inc/fbtheme-metabox.php';
-
+require_once get_template_directory() . '/inc/ngz-utilities.php';
 // /**
 //  * Soap
 //  */

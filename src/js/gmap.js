@@ -811,14 +811,14 @@ function initMap(div) {
   if(map_data!==null) {
     var marker = new google.maps.Marker({
       position      : new google.maps.LatLng(map_data.latitude, map_data.longitude),
-      map         : map,
+      
       title       : map_data.title,
       icon : {
         url   : theme_dir+'/img/'+marker_icon
       }
     });
     // Update 03-02-2017 : For other markers for other Maison Albar hotels
-    var maisons = map_data.maison_albar_hotels;
+    var maisons = map_data.hotel_post;
 
       // Display multiple markers on a map - declare variables
       var albar_infowindow = new google.maps.InfoWindow(), otherAlbarMarkers, i;

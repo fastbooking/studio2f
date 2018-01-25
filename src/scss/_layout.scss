@@ -256,6 +256,8 @@ html.open-menu {overflow:hidden;}
     width: 100%;
   }
   &-infowindow {
+    max-width: 440px;
+    text-align: justify;
     .row {margin: 0 -10px;}
     [class*="col-"] {
       padding: 10px 10px;
@@ -267,6 +269,7 @@ html.open-menu {overflow:hidden;}
     p {padding: 5px 0 0 0;}
     .btn {
       float: right;
+      margin-left: 10px;
     }
     .fa {
       display: inline-block;

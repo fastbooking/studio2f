@@ -2,39 +2,18 @@
 /**
  * Add Base JS
  */
-if ( ! function_exists( 'get_websdk_locale' ) ) {
-	function get_websdk_locale() {
-		switch (ICL_LANGUAGE_CODE) {
-			case 'vi':
-				return 'vi_VN';
-			case 'cn':
-				return 'zh_CN';
-			case 'jp':
-				return 'ja_JP';
-			case 'tw':
-				return 'zh_HK';
-			default:
-				return 'en_GB';
-		}
-	}
-}
-
-if ( ! function_exists( 'get_websdk_currency' ) ) {
-	function get_websdk_currency() {
-		switch (ICL_LANGUAGE_CODE) {
-			case 'vi':
-				return 'VND';
-			case 'cn':
-				return 'RMB';
-			case 'jp':
-				return 'YEN';
-			case 'tw':
-				return 'TWD';
-			default:
-				return 'USD';
-		}
-	}
-}
+global $locale;
+$locales = array(
+    'en' => 'en_GB',
+    'fr' => 'fr_FR',
+    'de' => 'de_DE',
+    'it' => 'it_IT',
+    'ru' => 'ru_RU',
+    'es' => 'es_ES',
+    'pt-pt' => 'pt_PT'
+);
+$locale = isset($locales[ICL_LANGUAGE_CODE]) ? $locales[ICL_LANGUAGE_CODE] : 'en_GB';
+define( 'WEBSDK_LOCALE', $locale );
 
 if ( ! function_exists( 'hh_enqueue_libs_js' ) ) {
 	function hh_enqueue_libs_js() {

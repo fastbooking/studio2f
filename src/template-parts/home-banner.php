@@ -2,6 +2,12 @@
     $args = array(
         'offset'      => 0,
         'post_type'   => 'hotel_post',
+        'meta_query'    => array(
+            array(
+                'key' => 'hotel_feature',
+                'value' => '1',
+            )
+        )
     );
     $myhotels = get_posts( $args );
 

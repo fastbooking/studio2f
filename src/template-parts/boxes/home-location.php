@@ -2,7 +2,6 @@
 global $data;
 
 $coords = explode(',', $data['hotel_coords']);
-
 $lat = trim($coords[0]);
 $lng = trim($coords[1]);
 
@@ -19,7 +18,7 @@ $hotel_studio_img = '<img src="'.ROJAK_PARENT_URI.'/img/upload/home-post1.jpg" a
 $hotel_info['html'] = '<div class="map-infowindow"><h4 class="map_title">'.$infowindow_title.'</h4>
                        <div class="row"><div class="col-md-6">'.$hotel_studio_img.'</div>
                          <div class="col-md-6">'.$infowindow_desc.'</div></div>
-                       <div class="map-address"><a class="btn btn-red" href="'.$data['hotel_url'].'" target="_blank" title="'.__('Visit site',TEXT_DOMAIN).'">'.__('Visit site',TEXT_DOMAIN).'</a>'.$htmladdress.'</div>';
+                       <div class="map-address"><a class="btn btn-red" href="'.$data['hotel_url'].'" target="_blank" title="'.__('Visit site',TEMPLATE_PREFIX).'">'.__('Visit site',TEMPLATE_PREFIX).'</a>'.$htmladdress.'</div>';
                        
 $hotel_info['title']  = ($data['map_title']) ? $data['map_title'] : $data['hotel_name'];
 $hotel_info['latitude']  = $lat;
@@ -71,6 +70,65 @@ $gmap_config['maxRadius']=  ($data['max_radius']) ? ($data['max_radius']) : '100
 // map travel mode
 $gmap_config['travel_mode']=  ($data['travel_mode']) ? ($data['travel_mode']) : 'DRIVING';
 
+$array_studio = [];
+
+$args_studio2let = array(
+    'posts_per_page'   => 2,
+    'offset'           => 0,
+    'post_type'        => 'hotel_post',
+    'meta_query'       => array(
+      array(
+        'key'   => 'hotel_feature',
+        'value' => '1',
+      )
+    )
+);
+
+$others_studio = get_posts($args_studio2let);
+
+  foreach ($others_studio as $k => $studio) {
+    // Get data from Maison Albar hotels custom post 'maison_albar_hotels'
+    $infos = get_post_meta($studio->ID);
+    $loc = $infos['hotel_latlng'][0];
+    $coords_albar = explode(',', $loc);
+    $lat_albar = trim($coords_albar[0]);
+    $lng_albar = trim($coords_albar[1]);
+    
+    $hotel_studio_name = get_the_title($studio->ID);
+
+    // Hotel Albar address
+    $hotel_studio_address = ($infos['hotel_address'][0]!="") ? $infos['hotel_address'][0] : '';
+    $hotel_studio_image = wp_get_attachment_image_src( get_post_thumbnail_id( $studio->ID ) , full );
+    // // Hotel Albar URL
+    $hotel_studio_URL = ($infos['hotel_url'][0]!="") ? $infos['hotel_url'][0] : '';
+    $url_str = __('Visit site',TEMPLATE_PREFIX);
+    $hotel_desc = $studio->post_content;
+    // // Hotel Albar HTML for the Google Maps infowindow
+    $hotel_studio_HTML = '<div class="map-infowindow">
+                          <h4 class="map_title">'.$hotel_studio_name.'</h4>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <img src="'.$hotel_studio_image[0].'" alt="'.$hotel_studio_name.'">
+                            </div>
+                            <div class="col-md-6">
+                              '.$hotel_desc.'
+                            </div>
+                          </div>
+                          <div class="map-address">
+                            <a class="btn btn-red" href="'.$hotel_albar_URL.'" target="_blank" title="'.$url_str.'">'.$url_str.'</a>
+                            '.$htmladdress.'</div>
+                        </div>';
+
+    // Array for map_data JS object
+    $array_studio[$k]['hotel_name'] = $hotel_studio_name;
+    $array_studio[$k]['lat'] = $lat_albar;
+    $array_studio[$k]['long'] = $lng_albar;
+    $array_studio[$k]['html_source'] = $hotel_studio_HTML;
+  }
+
+  // Set data on the global hotel_info object
+  $hotel_info['hotel_post'] = $array_studio;
+  // End of adding Maison Albar hotels on the map
 ?>
 <script type="text/javascript">
   var map_data = <?php echo json_encode($hotel_info); ?>;

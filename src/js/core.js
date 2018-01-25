@@ -1,3 +1,4 @@
+#=include validate.js
 #=include gmap.js
 #=include fbtheme-init.js
 

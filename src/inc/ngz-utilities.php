@@ -47,3 +47,19 @@ if ( ! function_exists( 'fbtheme_get_page_languages' ) ) {
 		return $lang_data;
 	}
 }
+
+if ( ! function_exists( 'studio2let_get_qs_text' ) ) {
+	function studio2let_get_qs_text() {
+		$txt_defaults = array(
+			'choose'        => __( 'Destination / Hotels', TEMPLATE_PREFIX ),
+			'submit'        => __( 'Book today', TEMPLATE_PREFIX ),
+			'cancel'        => __( 'Cancel Booking', TEMPLATE_PREFIX ),
+			'promo'  		=> __( 'Promo Code', TEMPLATE_PREFIX ),
+			'arrival'       => __( 'Arrival', TEMPLATE_PREFIX ),
+			'departure'     => __( 'Departure', TEMPLATE_PREFIX),
+		);
+
+		$txt_filter = apply_filters( 'studio2let_text_qs', false );
+		return wp_parse_args( $txt_filter, $txt_defaults );
+	}
+}

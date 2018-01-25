@@ -1,7 +1,7 @@
 <?php global $data; ?>
 <header class="header">
     <div class="header-top">
-        <a class="header-top__logo" href="<?php echo $data['hotel_url']; ?>" title="<?php echo $data['hotel_name']; ?>">
+        <a class="header-top__logo" href="<?php echo $home_url; ?>" title="<?php echo $data['hotel_name']; ?>">
             <img src="<?php echo $data['logo']['url'] ?>" alt="<?php echo $data['hotel_name']; ?>" />
         </a>
         <div class="header-top__menu">

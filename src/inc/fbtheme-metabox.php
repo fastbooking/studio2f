@@ -10,6 +10,25 @@ function register_meta_boxes( $meta_boxes ){
 	// Homepage
 	$postID = admin_post_id();
 	$post_template = get_post_meta( $postID, '_wp_page_template', true );
+
+	$hotels_args = array(	
+		'post_status'      => 'publish',
+		'posts_per_page'   => -1,
+		'orderby'          => 'title',
+		'order'            => 'asc',
+		'post_type'        => 'hotel_post',
+		'suppress_filters' => false,
+	);
+	$get_hotels = get_posts($hotels_args);
+	$hotelslist = array();
+	if(!empty($get_hotels)) {
+		foreach($get_hotels as $k => $hotel) {
+			$hotel_hid = get_post_meta($hotel->ID, 'hotel_fb_hid', true);
+			$hotelslist[$hotel_hid]= get_the_title($hotel->ID);
+
+		}
+	}
+
 	if (is_numeric( $postID )) {
 		$meta_boxes[] = array(
 			'title'  => __( 'Section Intro',TEMPLATE_PREFIX),
@@ -25,6 +44,40 @@ function register_meta_boxes( $meta_boxes ){
 				)
 			),
 		);
+
+		$meta_boxes[] = array(
+			'id' => 'push_offers',
+			'title' =>  __( 'Push Offers' , TEMPLATE_PREFIX) ,
+			'post_types' => array( 'page' ),
+			'context' => 'normal',
+			'priority' => 'high',
+			'fields' => array(
+				array(
+					'id' => 'push_offer',
+					'type' => 'group',
+					'clone'  => true,
+					'sort_clone' => true,
+					'name'  => '<b>' . __( 'Offers', TEMPLATE_PREFIX ) . '</b>',
+					'fields' => array(
+						array(
+							'id'          => 'push_offers_hotel',
+							'name'        => __('Hotel offer is coming from', TEMPLATE_PREFIX ),
+							'placeholder' => __( 'Select an hotel', TEMPLATE_PREFIX ),
+							'type'        => 'select_advanced',
+							'options'     => (!empty($hotelslist) ? $hotelslist : array()),
+							'select_all_none' => true,	
+						),
+						array(
+							'id'          => 'push_offers_code',
+							'name'        => __('Offer code',TEMPLATE_PREFIX),
+							'placeholder' => __( 'Enter the code of the offer', TEMPLATE_PREFIX ),
+							'type'        => 'text',
+						)
+					),
+				)
+			)		
+		);
+
 
 		$meta_boxes[] = array(
 			'title'  => __( 'Section Services',TEMPLATE_PREFIX ),
@@ -79,7 +132,20 @@ function register_meta_boxes( $meta_boxes ){
 				)
 			),
 		);
-
+		$meta_boxes[] = array(
+			'title'  => __('Thank you message',TEMPLATE_PREFIX),
+			'post_types' => array('page'),
+			'context'    => 'normal',
+			'priority'   => 'high',
+			'fields' => array(
+				array(
+					'name' => __('Message',TEMPLATE_PREFIX),
+					'id'   => 'contact_message',
+					'type' => 'wysiwyg',
+					'desc' => __('thanks for contacting us! We will get back to you soon!',TEMPLATE_PREFIX)
+				)
+			),
+		);
 	}
 
 	$meta_boxes[] = array(
@@ -125,6 +191,12 @@ function register_meta_boxes( $meta_boxes ){
 				'required'		=>	true
 			),
 			array(
+				'id'            => 'hotel_url',
+				'name'          => __('Hotel url',TEMPLATE_PREFIX),
+				'type'          => 'text',
+				'required'		=>	true
+			),
+			array(
 				'id'            => 'hotel_fax',
 				'name'          => __('Hotel Fax',TEMPLATE_PREFIX),
 				'type'          => 'text'
@@ -156,8 +228,8 @@ function register_meta_boxes( $meta_boxes ){
 				'type'          => 'text'
 			),
 			array(
-				'id'            => 'hotel_pinterest',
-				'name'          => __('Hotel Pinterest',TEMPLATE_PREFIX),
+				'id'            => 'hotel_instagram',
+				'name'          => __('Hotel Instagram',TEMPLATE_PREFIX),
 				'type'          => 'text'
 			),
 			array(
@@ -174,10 +246,41 @@ function register_meta_boxes( $meta_boxes ){
 		)
 	);
 
+	// Offer
+	// if ( get_post_type($postID) == 'offer_post' ) {
+	// 	$rates = get_offers_of_all_hotels();
+	// 	if ( !empty($rates) ) {
+	// 		function returnOfferOption($item) {
+	// 			return array('value' => $item->rate->name, 'label' => $item->rate->title);
+	// 		}
+	// 		$offers_options = unique_multidim_array(array_map('returnOfferOption', $rates), 'value');
+	// 	}
+	// }
+
+	// $meta_boxes[] = array(
+	// 	'id' => 'offer',
+	// 	'title' =>  'Offer Information',
+	// 	'pages' => array( 'offer_post' ),
+	// 	'context' => 'normal',
+	// 	'priority' => 'high',
+	// 	'fields'	=> array(
+	// 		array(
+	// 			'id'            => 'offer_name',
+	// 			'name'          => 'Offer Name',
+	// 			'type'          => 'select',
+	// 			'options'		=> $offers_options
+	// 		)
+	// 	)
+	// );
 
 	return $meta_boxes;
 }
 
+// if ( ! function_exists( 'returnOption' ) ) {
+// 	function returnOption($item) {
+// 		return array('value' => $item->ID, 'label' => $item->post_title);
+// 	}
+// }
 
 // if ( ! function_exists( 'unique_multidim_array' ) ) {
 // 	function unique_multidim_array($array, $key) { 
@@ -219,18 +322,14 @@ function register_meta_boxes( $meta_boxes ){
 // 						'currency'	=> $currency,
 // 						'locale'	=> $locale,
 // 						'output'	=> 'json',
-// 						'orderBy'	=> 'pricePerNight',
 // 						'_authCode'	=> WEBSDK_TOKEN
 // 					),
 // 				)
 // 			);
 // 			$data = json_decode( wp_remote_retrieve_body($response))->data;
 // 			$rates = array();
-// 			var_dump($data);
-// 			die();
 // 			foreach ($data as $item) {
 // 				$rates = array_merge($rates, $item->rates);
-
 // 			}
 // 			return $rates;
 // 		}

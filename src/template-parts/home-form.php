@@ -4,31 +4,40 @@
         'post_type'   => 'hotel_post',
     );
     $myhotels = get_posts( $args );
+    $text = studio2let_get_qs_text();
+    global $locale;
 ?>
-<div class="header-qs">
-    <div class="header-qs_fields">
-        <div class="qs__field qs__select">
-            <select class="js_qs__sites" name="Hotelnames">
-                <option default>Select Property</option>
-                <?php 
-                    foreach ( $myhotels as $hotel ) {
-                        $title = $hotel->post_title;
-                        echo '<option value="'.$title.'">'.$title.'</option>';
-                    }
-                ?>
-            </select>  
+<script type='text/javascript'>
+    var icl_vars = {"current_language":"<?php echo $locale ?>"};
+    console.log(icl_vars);
+</script>
+<div class="clearfix">
+    <form class="header-qs js_qs-form">
+        <div class="header-qs_fields">
+            <div class="qs__field qs__select">
+                <select class="js_qs-form__hotel qs__destination" tabindex="2" required name="qs_form__hotel" data-placeholder="<?php echo $text['choose'] ?>">
+                    <option value="" disabled selected><?php echo $text['choose'] ?></option>
+                    <?php 
+                        foreach ( $myhotels as $hotel ) {
+                            $title = $hotel->post_title;
+                            $hotel_hid = get_post_meta($hotel->ID, 'hotel_fb_hid', true);
+                            echo '<option value="'.$hotel_hid.'">'.$title.'</option>';
+                        }
+                    ?>
+                </select>  
+            </div>
+            <div class="qs__field qs__datepicker qs__field-checkin">
+                <span><?php echo $text['arrival'] ?></span>
+                <input class="qs__checkin js_qs-form__checkin" name="qs_form__checkin" value="">
+            </div>
+            <div class="qs__field qs__datepicker qs__field-checkout">
+                <span><?php echo $text['departure'] ?></span>
+                <input class="qs__checkout js_qs-form__checkout" name="qs_form__checkout" value="">
+            </div>
+            <label class="qs__field qs__label"><?php echo $text['promo'] ?> <?php echo $text['cancel'] ?></label>
         </div>
-        <div class="qs__field qs__datepicker qs__field-checkin">
-            <span>Arrival</span>
-            <input class="qs__checkin js_qs__checkin" readonly="readonly">
+        <div class="header-qs_btn">
+            <button class="qs__btn-submit js_qs-form__submit" type="submit"><?php echo $text['submit'] ?></button>
         </div>
-        <div class="qs__field qs__datepicker qs__field-checkout">
-            <span>Departure</span>
-            <input class="qs__checkout js_qs__checkuot" readonly="readonly">
-        </div>
-        <label class="qs__field qs__label">Promo code cancel booking</label>
-    </div>
-    <div class="header-qs_btn">
-        <button class="qs__btn-submit" type="submit">Book Today</button>
-    </div>
+    </form>
 </div>

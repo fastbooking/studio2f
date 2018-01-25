@@ -2,25 +2,32 @@
     <div class="container">
         <h3 class="block-title">Contact us</h3>
         <div class="block-form">
-            <form action="#" class="form form--contact">
+            <form id="gform" method="POST" data-email="hphoang@fastbooking.net" action="https://script.google.com/a/fastbooking.net/macros/s/AKfycbwHT3WhwdKCr1Pnc1VdLfWKw4IBMsZ29KRXtKcrhYRHe7jtnk8/exec" class="form form--contact">
                 <div class="row form--contact__info">
-                    <div class="col">
-                        <p class="form__label form__label--address">36-37 Cartwright Gardens London WC1H 9EH</p>
-                        <p class="form__label form__label--tel"><span class="label-phone">Telephone:</span> <a href="+44 (0) 20 7380 8450" title="+44 (0) 20 7380 8450">+44 (0) 20 7380 8450</a></p>
-                        <p class="form__label form__label--email"><span class="label-mail">Email:</span> <a href="mailto:reservation@studios2let.com" title="reservation@studios2let.com">reservation@studios2let.com</a></p>
-                    </div>
-                    <div class="col">
-                        <p class="form__label form__label--address">192 North Gower Street London NW1 2LY</p>
-                        <p class="form__label form__label--tel"><span class="label-phone">Telephone:</span> <a href="+44 (0) 20 7121 6200" title="+44 (0) 20 7121 6200">+44 (0) 20 7121 6200</a></p>
-                        <p class="form__label form__label--email"><span class="label-mail">Email:</span> <a href="mailto:reservation-ng@studios2let.com" title="reservation-ng@studios2let.com">reservation@studios2let.com</a></p>
-                    </div>
+                    <?php 
+                        $args = array(
+                            'offset'      => 0,
+                            'post_type'   => 'hotel_post',
+                        );
+                        $myhotels = get_posts( $args );
+                        foreach ( $myhotels as $hotel ) {
+                            $address = get_post_meta( $hotel->ID,'hotel_address');
+                            $phone = get_post_meta( $hotel->ID,'hotel_phone');
+                            $email = get_post_meta( $hotel->ID,'hotel_email');
+                            echo '<div class="col">
+                                    <p class="form__label form__label--address">'.$address[0].'</p>
+                                    <p class="form__label form__label--tel"><span class="label-phone">'.__('Telephone',TEMPLATE_PREFIX).':</span> <a href="'.$phone[0].'" title="'.$phone[0].'">'.$phone[0].'</a></p>
+                                    <p class="form__label form__label--email"><span class="label-mail">'.__('Email',TEMPLATE_PREFIX).':</span> <a href="mailto:'.$email[0].'" title="'.$email[0].'">'.$email[0].'</a></p>
+                                </div>';
+                        }
+                    ?>
                 </div>
 
                 <div class="form--contact__frm">
                     <div class="row form__row">
                         <div class="col-md-12 ">
                             <div class="custom-select">
-                                <select name="slt-hotel" id="slt-hotel" class=" js-custom-select">
+                                <select name="slt-hotel" id="slt-hotel" required class="js-custom-select">
                                     <option default>Hotel</option>
                                     <option value="Hotel 1">Hotel 1</option>
                                     <option value="Hotel 1">Hotel 1</option>
@@ -40,16 +47,17 @@
                             </div>    
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="txt_first_name" id="txt_first_name" placeholder="First name" class="form__input">
+                            <input type="text" required name="txt_first_name" id="txt_first_name" placeholder="First name" class="form__input">
                         </div>
                     </div>
 
                     <div class="row form__row">
                        <div class="col-md-6">
-                            <input type="text" name="txt_last_name" id="txt_last_name" placeholder="Last name" class="form__input">
+                            <input type="text" required name="txt_last_name" id="txt_last_name" placeholder="Last name" class="form__input">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="txt_email" id="txt_email" placeholder="Email address" class="form__input">
+                            <input type="email" required name="txt_email" id="txt_email" placeholder="Email address" class="form__input">
+                            <span id="email-invalid" style="display:none">Must be a valid email address</span>
                         </div>
                     </div>
 
@@ -82,6 +90,9 @@
                 </div>
 
             </form>
+        </div> 
+        <div class="center" style="display:none;" id="thankyou_message">
+            <?php echo rwmb_meta('contact_message'); ?>
         </div>
     </div> 
 </section>
