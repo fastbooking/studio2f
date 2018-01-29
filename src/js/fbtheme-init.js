@@ -13,7 +13,11 @@ $( document ).ready( function () {
 		$('.header-language_box').toggleClass('show');
 	});
 	initMap('map-canvas');
-	// showDateMonths();
+	
+	$('.js-see-more').on('click',function(e){
+		e.preventDefault();
+		$(this).closest('.home-post_content').toggleClass('open-text');
+	});
 	
 	var ing_format_date    = "d M yy";
 	var ing_form_el        = '.js_qs-form';

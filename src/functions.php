@@ -10,17 +10,7 @@ require_once( trailingslashit( get_template_directory() ) . 'library/rojak.php' 
 new Rojak();
 
 define('TEMPLATE_PREFIX', 'studio2let');
-define('WEBSDK_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOiJeLiokIiwicHJvcGVydGllcyI6InVrbG9uMjQ5NzQiLCJncm91cHMiOiJeKHVrbG9uMjAzODl8dWtsb24yNDk3NCkkIiwiZm9yIjoib2ZmZXJzIiwiaWF0IjoxNTE2NzkxMDk4LCJqdGkiOiJiYmM5NGJlZC1jZDg1LTQzNjMtYTVlNC1lYTJkMTQ0MzA2ZmQifQ.Cw1moquROuUWNbZqsy46E9mGaJ41ah2Pwfd-jl79l68');
-
-function add_socials_fb_options($fields) {
-    $fields[]=array (
-      'id' 	=> 'instagram',
-      'type' 	=> 'text',
-      'title' => 'instagram',
-    );
-	return $fields;
-}
-add_filter('fbcmsv2_redux_hotel_field_group_social' , 'add_socials_fb_options');
+define('STUDIO_WEBSDK_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOiJeLiokIiwicHJvcGVydGllcyI6Il4odWtsb24yMDM4OXx1a2xvbjI0OTc0KSQiLCJncm91cHMiOiJeJCIsImZvciI6Imdlbi11c2VyIiwiaWF0IjoxNTE2OTUyNTQ4LCJqdGkiOiI3ZWE5Mzc1Mi1hN2IzLTQwNDMtYjQ5ZC02Yzk0MDI1YzNjODAifQ.a6MtEKYPriJ45uWGzMT_o5hAGNeb3UruZyM6OfGEyuw');
 
 add_action( 'after_setup_theme', 'fbtheme_setup' );
 

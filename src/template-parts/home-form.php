@@ -5,11 +5,9 @@
     );
     $myhotels = get_posts( $args );
     $text = studio2let_get_qs_text();
-    global $locale;
 ?>
 <script type='text/javascript'>
-    var icl_vars = {"current_language":"<?php echo $locale ?>"};
-    console.log(icl_vars);
+    var icl_vars = {"current_language":"<?php echo studio2let_get_websdk_locale(); ?>"};
 </script>
 <div class="clearfix">
     <form class="header-qs js_qs-form">
