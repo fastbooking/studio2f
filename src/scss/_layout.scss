@@ -77,12 +77,25 @@ html.open-menu {overflow:hidden;}
   &-banner {
     display: table;
     width: 100%;
+    overflow: hidden;
     &__post {
-      background-size: cover;
-      background-position: center;
       position: relative;
       height: 50vh;
       min-height: 300px;
+      &_image {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-size: cover;
+        background-position: center;
+        transition: all 500ms ease-in-out;
+        transform: scale(1);
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
       &_content {
         position: absolute;
         width: 100%;
@@ -207,6 +220,15 @@ html.open-menu {overflow:hidden;}
 .home-post {
   padding-top: 20px;
   min-width: 33.333336%;
+  &:before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    top: 20px;
+    bottom:0;
+    box-shadow: 0px 0px 5px -1px rgba($color-black, 0.3);
+  }
   img {width:100%;}
   @include media-breakpoint-down(md) {
     flex-basis: auto;
@@ -214,14 +236,15 @@ html.open-menu {overflow:hidden;}
   &_image {
     position: relative;
     min-height: 250px;
-    background-size: 100% 100%;
+    background-color: $color-white;
+    background-size: 100% auto;
     background-position: center center;
+    background-repeat: no-repeat;
   }
   &_content {
     padding: 2em;
     background-color: $color-white;
     text-align: justify;
-    box-shadow: 0px 0px 5px -1px rgba($color-black, 0.3);
     .full-text {
       display: none;
     }

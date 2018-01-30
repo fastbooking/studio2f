@@ -6,10 +6,26 @@
 global $meta_boxes;	
 
 add_filter( 'rwmb_meta_boxes', 'register_meta_boxes' );
+function admin_post_id(){
+    if ( ! defined( 'WP_ADMIN' ) || ! WP_ADMIN ) {
+        return get_the_ID();
+    }
+    if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        return false;
+    }
+    if ( isset( $_GET['post'] ) ) {
+        $post_id = $_GET['post'];
+    } elseif ( isset( $_POST['post_ID'] ) ) {
+        $post_id = $_POST['post_ID'];
+    } else {
+        $post_id = false;
+    }
+    $post_id = (int) $post_id;
+    return $post_id;
+}
 function register_meta_boxes( $meta_boxes ){
 	// Homepage
 	$postID = admin_post_id();
-	$post_template = get_post_meta( $postID, '_wp_page_template', true );
 
 	$hotels_args = array(	
 		'post_status'      => 'publish',
@@ -28,8 +44,8 @@ function register_meta_boxes( $meta_boxes ){
 
 		}
 	}
-
-	if (is_numeric( $postID )) {
+	$post_template = get_post_meta( $postID, '_wp_page_template', true );
+	if ( rojak_str_contains( $post_template, 'tpl-home.php' ) ) {
 		$meta_boxes[] = array(
 			'title'  => __( 'Section Intro',TEMPLATE_PREFIX),
 			'post_types' => array('page'),
@@ -245,4 +261,5 @@ function register_meta_boxes( $meta_boxes ){
 
 		)
 	);
+	return $meta_boxes;
 }

@@ -207,3 +207,16 @@ $font-size-lg : 18px;
 	width: 50%;
 	float: left;
 }
+.hidden-desktop {
+	display: block;
+	@include media-breakpoint-up(lg) {
+		display: none;
+	}
+}
+.hidden-mobile {
+	display: none;
+	@include media-breakpoint-up(lg) {
+		display: block;
+	}
+}
+

@@ -136,7 +136,7 @@ $others_studio = get_posts($args_studio2let);
 </script>
 <section class="block">
     <div class="container">
-        <h3 class="block-title">How to find us</h3>
+        <h3 class="block-title"><?php _e('How to find us',TEMPLATE_PREFIX) ?></h3>
         <div class="row">
             <div class="col-md-12"> 
                 <div id="map-canvas" class="map-canvas js-map-canvas"></div>

@@ -1,5 +1,6 @@
 <?php 
     $intro_title = rwmb_meta('intro_title');
+    if( !empty($intro_title)) :
 ?>
 <section class="block">
     <div class="container">
@@ -13,3 +14,4 @@
         </div>
     </div> 
 </section>
+<?php endif; ?>

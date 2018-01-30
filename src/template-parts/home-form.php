@@ -35,7 +35,8 @@
             <label class="qs__field qs__label"><?php echo $text['promo'] ?> <?php echo $text['cancel'] ?></label>
         </div>
         <div class="header-qs_btn">
-            <button class="qs__btn-submit js_qs-form__submit" type="submit"><?php echo $text['submit'] ?></button>
+            <button class="qs__btn-submit js_qs-form__submit hidden-mobile" type="submit"><?php echo $text['submit'] ?></button>
+            <a class="qs__btn-submit hidden-desktop" href="https://www.book-secure.com/index.php?s=group&group=ukpresgowerstud2&locale=en_GB&qs_hidden=1" target="_blank" title="<?php echo $text['submit'] ?>"><?php echo $text['submit'] ?></a>
         </div>
     </form>
 </div>

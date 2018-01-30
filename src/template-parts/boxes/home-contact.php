@@ -1,6 +1,6 @@
 <section class="block" id="Contact_form">
     <div class="container">
-        <h3 class="block-title">Contact us</h3>
+        <h3 class="block-title"><?php _e('Contact us',TEMPLATE_PREFIX) ?></h3>
         <div class="block-form">
             <form id="gform" method="POST" data-email="hphoang@fastbooking.net" action="https://script.google.com/a/fastbooking.net/macros/s/AKfycbwHT3WhwdKCr1Pnc1VdLfWKw4IBMsZ29KRXtKcrhYRHe7jtnk8/exec" class="form form--contact">
                 <div class="row form--contact__info">
@@ -27,11 +27,15 @@
                     <div class="row form__row">
                         <div class="col-md-12 ">
                             <div class="custom-select">
-                                <select name="slt-hotel" id="slt-hotel" required class="js-custom-select">
-                                    <option default>Hotel</option>
-                                    <option value="Hotel 1">Hotel 1</option>
-                                    <option value="Hotel 1">Hotel 1</option>
-                                    <option value="Hotel 1">Hotel 1</option>
+                                <select name="slt-hotel" id="slt-hotel" required class="js-custom-select js-change-email">
+                                    <option value="" disabled selected><?php _e('Choose hotel',TEMPLATE_PREFIX) ?></option>
+                                    <?php 
+                                        foreach ( $myhotels as $hotel ) {
+                                            $title = $hotel->post_title;
+                                            $email = get_post_meta( $hotel->ID,'hotel_email');
+                                            echo '<option value="'.$email[0].'">'.$title.'</option>';
+                                        }
+                                    ?>
                                 </select>
                             </div>
                         </div>
@@ -40,9 +44,9 @@
                         <div class="col-md-6">
                             <div class="custom-select">
                                 <select name="slt-title" id="slt-title" class="js-custom-select">
-                                    <option value="Mr">Mr</option>
-                                    <option value="Mrs">Mrs</option>
-                                    <option value="Mss">Mss</option>
+                                    <option value="Mr"><?php _e('Mr',TEMPLATE_PREFIX) ?></option>
+                                    <option value="Mrs"><?php _e('Mrs',TEMPLATE_PREFIX) ?></option>
+                                    <option value="Mss"><?php _e('Mss',TEMPLATE_PREFIX) ?></option>
                                 </select>
                             </div>    
                         </div>
@@ -57,7 +61,7 @@
                         </div>
                         <div class="col-md-6">
                             <input type="email" required name="txt_email" id="txt_email" placeholder="Email address" class="form__input">
-                            <span id="email-invalid" style="display:none">Must be a valid email address</span>
+                            <span id="email-invalid" style="display:none"><?php _e('Must be a valid email address',TEMPLATE_PREFIX) ?></span>
                         </div>
                     </div>
 
@@ -66,13 +70,7 @@
                             <input type="text" name="txt_phone" id="txt_phone" placeholder="Phone number" class="form__input">
                         </div>
                         <div class="col-md-6">
-                            <div class="custom-select">
-                                <select name="slt-city" id="slt-city" class="js-custom-select">
-                                    <option default>city</option>
-                                    <option value="city">city</option>
-                                    <option value="city">city</option>
-                                </select>
-                            </div>    
+                            <input type="text" name="txt_city" id="txt_citi" placeholder="City" class="form__input">    
                         </div>
                     </div>
                     <div class="row form__row">

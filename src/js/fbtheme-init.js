@@ -18,6 +18,11 @@ $( document ).ready( function () {
 		e.preventDefault();
 		$(this).closest('.home-post_content').toggleClass('open-text');
 	});
+
+	$('.js-change-email').on('change',function(e){
+		var email = $(this).val();
+		$('.form--contact').attr('data-email',email);
+	});
 	
 	var ing_format_date    = "d M yy";
 	var ing_form_el        = '.js_qs-form';

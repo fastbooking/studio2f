@@ -1,11 +1,12 @@
+<?php 
+    $cop_title = rwmb_meta('cor_title');
+    $cop_content1 = rwmb_meta('cor_mid_content');
+    $cop_content2 = rwmb_meta('cor_content');
+    if( !empty($cop_title)) :
+?>
 <section class="block">
     <div class="container">
         <div class="row justify-content-md-center">
-            <?php 
-                $cop_title = rwmb_meta('cor_title');
-                $cop_content1 = rwmb_meta('cor_mid_content');
-                $cop_content2 = rwmb_meta('cor_content');
-            ?>
             <div class="col-md-8 center">
                 <h3 class="block-title"><?php echo $cop_title; ?></h3>
                 <?php if ($cop_content1) : ?>
@@ -22,3 +23,4 @@
         <?php endif; ?>
     </div>
 </section>
+<?php endif; ?>

@@ -19,12 +19,15 @@
             $img = wp_get_attachment_image_src(get_post_thumbnail_id($hotel->ID),full);
             $title = $hotel->post_title;
         ?>
-        <div class="header-banner__post" style="background-image: url('<?php echo $img[0] ?>');">
-            <div class="header-banner__post_content">
-                <span><?php echo __('Discover',TEMPLATE_PREFIX) ?></span>
-                <h2><?php echo $title; ?></h2>
-                <hr class="post-reline" />
-            </div>
+        <div class="header-banner__post">
+            <a href="#" title="<?php echo $title; ?>">
+                <div class="header-banner__post_image" style="background-image: url('<?php echo $img[0] ?>');"></div>
+                <div class="header-banner__post_content">
+                    <span><?php echo __('Discover',TEMPLATE_PREFIX) ?></span>
+                    <h2><?php echo $title; ?></h2>
+                    <hr class="post-reline" />
+                </div>
+            </a>
         </div>
         <?php     
         }

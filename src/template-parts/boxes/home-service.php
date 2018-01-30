@@ -2,12 +2,11 @@
     $service_title = rwmb_meta('ser_title');
     $service_content1 = rwmb_meta('ser_mid_content');
     $service_content2 = rwmb_meta('ser_content');
+    if( !empty($service_title)) :   
 ?>
-
 <section class="block">
     <div class="container">
         <div class="row justify-content-md-center">
-            
             <div class="col-md-8 center">
                 <h3 class="block-title"><?php echo $service_title; ?></h3>
                 <?php if ($service_content1) : ?>
@@ -24,3 +23,4 @@
         <?php endif; ?>
     </div>
 </section>
+<?php endif; ?>
