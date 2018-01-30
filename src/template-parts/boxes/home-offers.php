@@ -19,6 +19,7 @@
     $response = wp_remote_get('http://websdk.fastbooking-cloud.ch/groupOffers?'.http_build_query($websdk_config));
     $offers = json_decode( wp_remote_retrieve_body($response))->data;
     
+    if( !empty($offers)) : 
 ?>
 <section class="block">
     <div class="container">
@@ -68,3 +69,4 @@
         <?php } ?>
     </div> 
 </section>
+<?php endif; ?>
