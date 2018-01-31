@@ -41,7 +41,6 @@ function register_meta_boxes( $meta_boxes ){
 		foreach($get_hotels as $k => $hotel) {
 			$hotel_hid = get_post_meta($hotel->ID, 'hotel_fb_hid', true);
 			$hotelslist[$hotel_hid]= get_the_title($hotel->ID);
-
 		}
 	}
 	$post_template = get_post_meta( $postID, '_wp_page_template', true );
@@ -261,5 +260,42 @@ function register_meta_boxes( $meta_boxes ){
 
 		)
 	);
+	
 	return $meta_boxes;
+}
+
+if ( ! function_exists( 'get_offers_of_all_hotels' ) ) {
+    function get_offers_of_all_hotels() {
+        $list_hotel = get_posts(array(
+            'post_status'      => 'publish',
+            'post_type'        => 'hotel_post',
+        ));
+        $hids = '';
+        foreach ($list_hotel as $hotel) {
+            $hids .= get_post_meta($hotel->ID, 'hotel_fb_hid', true).',';
+        }
+        $locale = studio2let_get_websdk_locale();
+        $currency = studio2let_get_websdk_currency();
+        $websdk_config = array(
+            'output'    => 'json',
+            'hids'      => rtrim($hids, ','),
+            'locale'    => $locale,
+            'currency'  => $currency,
+            '_authCode' => STUDIO_WEBSDK_TOKEN
+        );
+        $response = wp_remote_get('http://websdk.fastbooking-cloud.ch/groupOffers?'.http_build_query($websdk_config));
+        $data = json_decode( wp_remote_retrieve_body($response))->data;
+        $rates = array();
+        foreach ($data as $k => $item) {
+        	$hoteltitle = $item->prop->title;
+        	$ofrate = $item->rates;
+            foreach ($ofrate as $j => $rate) {
+           		$rate->hotel = $hoteltitle;	
+            }   
+            $rates = array_merge($rates, $ofrate);
+           
+        }
+        return $rates;
+    }
+    return false;
 }

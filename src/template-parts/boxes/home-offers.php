@@ -1,48 +1,35 @@
 <?php
-    $list_hotel = get_posts(array(
-        'post_status'      => 'publish',
-        'post_type'        => 'hotel_post',
-    ));
-    $hids = '';
-    foreach ($list_hotel as $hotel) {
-        $hids .= get_post_meta($hotel->ID, 'hotel_fb_hid', true).',';
+    $selected_offer = rwmb_meta('push_offer');
+    $offers         = get_offers_of_all_hotels(); 
+    $offers_to_display = array();
+    foreach ($offers as $offer) {        
+        $rate_name = $offer->rate->name;
+        foreach ($selected_offer as $selections) {
+            $code = $selections["push_offers_code"];
+            if ( $code == $rate_name ) {
+                $offers_to_display[$rate_name] = $offer;
+            }
+        }
     }
-    $locale = studio2let_get_websdk_locale();
-    $currency = studio2let_get_websdk_currency();
-    $websdk_config = array(
-        'output'    => 'json',
-        'hids'      => rtrim($hids, ','),
-        'locale'    => $locale,
-        'currency'  => $currency,
-        '_authCode' => STUDIO_WEBSDK_TOKEN
-    );
-    $response = wp_remote_get('http://websdk.fastbooking-cloud.ch/groupOffers?'.http_build_query($websdk_config));
-    $offers = json_decode( wp_remote_retrieve_body($response))->data;
-    
-    if( !empty($offers)) : 
+    if( !empty($offers_to_display) ):
 ?>
 <section class="block">
     <div class="container">
         <h3 class="block-title"><?php _e('Special Offers',TEMPLATE_PREFIX) ?></h3>
-        <?php 
-            foreach ($offers as $i=>$offer) {
-                $offer = $offers[$i];
-                $offer_hotel = $offer->prop->title;
-                $rates = $offer->rates;
-        ?>
         <div class="row">
             <?php
-                foreach ($rates as $j => $item) {
+                foreach ($offers_to_display as $j => $item) {
+                    $offer_name = $item->hotel;
                     $offer_image = $item->rate->image->url;
-                    $offer_name = $item->rate->title;
+                    $offer_title = $item->rate->title;
                     $offer_desc = $item->rate->html_description;
                     $offer_booking = $item->quotation->plainBookLink;
                     ?>
                         <div class="home-post col-md-6">
                             <div class="home-post_image" style="background-image: url('<?php echo $offer_image; ?>');"></div>
                             <div class="home-post_content">
-                                <span class="home-post_subtitle"><?php echo $offer_hotel; ?></span>
-                                <h4 class="home-post_title"><?php echo $offer_name; ?></h4>
+                                <span class="home-post_subtitle"><?php echo $offer_name; ?></span>
+                                <h4 class="home-post_title"><?php echo $offer_title; ?></h4>
                                 <div class="home-post_desc">
                                     <?php echo rojak_get_first_words($item->rate->plain_description,50); ?>
                                 </div>
@@ -62,11 +49,8 @@
                                 </div>
                             </div>
                         </div> 
-                    <?php
-                }
-            ?>
+            <?php } ?>
         </div>
-        <?php } ?>
     </div> 
 </section>
 <?php endif; ?>
