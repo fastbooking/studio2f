@@ -1,8 +1,8 @@
 <?php
 /**
- * fbtheme functions and definitions
+ * studio2let functions and definitions
  *
- * @package fbtheme
+ * @package studio2let
  */
 
 // Launch the Rojak framework.
@@ -12,9 +12,9 @@ new Rojak();
 define('TEMPLATE_PREFIX', 'studio2let');
 define('STUDIO_WEBSDK_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOiJeLiokIiwicHJvcGVydGllcyI6Il4odWtsb24yMDM4OXx1a2xvbjI0OTc0KSQiLCJncm91cHMiOiJeJCIsImZvciI6Imdlbi11c2VyIiwiaWF0IjoxNTE2OTUyNTQ4LCJqdGkiOiI3ZWE5Mzc1Mi1hN2IzLTQwNDMtYjQ5ZC02Yzk0MDI1YzNjODAifQ.a6MtEKYPriJ45uWGzMT_o5hAGNeb3UruZyM6OfGEyuw');
 
-add_action( 'after_setup_theme', 'fbtheme_setup' );
+add_action( 'after_setup_theme', 'studio2let_setup' );
 
-if ( ! function_exists( 'fbtheme_setup' ) ) {
+if ( ! function_exists( 'studio2let_setup' ) ) {
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -22,7 +22,7 @@ if ( ! function_exists( 'fbtheme_setup' ) ) {
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function fbtheme_setup() {
+	function studio2let_setup() {
 
 		add_theme_support( 'rojak-templates' );
 
@@ -40,19 +40,14 @@ if ( ! function_exists( 'fbtheme_setup' ) ) {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on fbtheme, use a find and replace
-		 * to change 'fbtheme' to the name of your theme in all the template files
+		 * If you're building a theme based on studio2let, use a find and replace
+		 * to change 'studio2let' to the name of your theme in all the template files
 		 */
-		load_theme_textdomain( 'fbtheme', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'studio2let', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
 
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-		 */
 		add_theme_support( 'post-thumbnails' );
 
 		// This theme uses wp_nav_menu() in one location.
@@ -72,64 +67,38 @@ if ( ! function_exists( 'fbtheme_setup' ) ) {
 			'footer-legal' => 'Footer Legal',
 		) );
 
-
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
-		// add_theme_support( 'html5', array(
-		// 	'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
-		// ) );
-
-		/*
-		 * Enable support for Post Formats.
-		 * See https://codex.wordpress.org/Post_Formats
-		 */
-		// add_theme_support( 'post-formats', array(
-		// 	'aside', 'image', 'video', 'quote', 'link',
-		// ) );
-
-		// Set up the WordPress core custom background feature.
-		// add_theme_support( 'custom-background', apply_filters( 'fbtheme_custom_background_args', array(
-		// 	'default-color' => 'ffffff',
-		// 	'default-image' => '',
-		// ) ) );
-
-		/*
-		 * Enable excerpt on Pages
-		 */
 		add_post_type_support('page', 'excerpt');
 	}
-}; // fbtheme_setup
+}; // studio2let_setup
 
 
 /**
  * Remove post in admin
  */
-if ( ! function_exists( 'fbtheme_admin_remove_menu' ) ) {
-	function fbtheme_admin_remove_menu() {
+if ( ! function_exists( 'studio2let_admin_remove_menu' ) ) {
+	function studio2let_admin_remove_menu() {
 		remove_menu_page( 'edit.php' );
 	}
 }
-add_action( 'admin_menu', 'fbtheme_admin_remove_menu' );
+add_action( 'admin_menu', 'studio2let_admin_remove_menu' );
 
 
 /**
  * Add SVG
  */
-if (!function_exists('fbtheme_cc_mime_types')) {
-	function fbtheme_cc_mime_types($mimes) {
+if (!function_exists('studio2let_cc_mime_types')) {
+	function studio2let_cc_mime_types($mimes) {
 		$mimes['svg'] = 'image/svg+xml';
 		return $mimes;
 	}
 }
-add_filter('upload_mimes', 'fbtheme_cc_mime_types');
+add_filter('upload_mimes', 'studio2let_cc_mime_types');
 
 /**
  * Disable emoji feature introduced in Wordpresss 4.2
  */
-if (!function_exists('fbtheme_disable_emojicons_tinymce')) {
-	function fbtheme_disable_emojicons_tinymce( $plugins ) {
+if (!function_exists('studio2let_disable_emojicons_tinymce')) {
+	function studio2let_disable_emojicons_tinymce( $plugins ) {
 		if ( is_array( $plugins ) ) {
 			return array_diff( $plugins, array( 'wpemoji' ) );
 		} else {
@@ -138,8 +107,8 @@ if (!function_exists('fbtheme_disable_emojicons_tinymce')) {
 	}
 }
 
-if (!function_exists('fbtheme_disable_wp_emojicons')) {
-	function fbtheme_disable_wp_emojicons() {
+if (!function_exists('studio2let_disable_wp_emojicons')) {
+	function studio2let_disable_wp_emojicons() {
 
 		// all actions related to emojis
 		remove_action( 'admin_print_styles', 'print_emoji_styles' );
@@ -151,21 +120,21 @@ if (!function_exists('fbtheme_disable_wp_emojicons')) {
 		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
 
 		// filter to remove TinyMCE emojis
-		add_filter( 'tiny_mce_plugins', 'fbtheme_disable_emojicons_tinymce' );
+		add_filter( 'tiny_mce_plugins', 'studio2let_disable_emojicons_tinymce' );
 	}
 }
-add_action( 'init', 'fbtheme_disable_wp_emojicons' );
+add_action( 'init', 'studio2let_disable_wp_emojicons' );
 
 
 /**
  * Disable Admin Bar
  */
-if (!function_exists('fbtheme_admin_bar')) {
-	function fbtheme_admin_bar() {
+if (!function_exists('studio2let_admin_bar')) {
+	function studio2let_admin_bar() {
 		add_filter('show_admin_bar', '__return_false');
 	}
 }
-// add_action( 'init', 'fbtheme_admin_bar' );
+// add_action( 'init', 'studio2let_admin_bar' );
 
 
 /**
@@ -173,20 +142,20 @@ if (!function_exists('fbtheme_admin_bar')) {
  *
  * @link notboring.org/devblog/2012/08/how-to-remove-the-embedded-sitepress-multilingual-cmsrescsslanguage-selector-css-from-your-own-wordpress-templates-on-wpml-installations/
  */
-if ( ! function_exists( 'fbtheme_wpml_dont_load' ) ) {
-	function fbtheme_wpml_dont_load() {
+if ( ! function_exists( 'studio2let_wpml_dont_load' ) ) {
+	function studio2let_wpml_dont_load() {
 		define('ICL_DONT_LOAD_LANGUAGE_SELECTOR_CSS', true);
 		define('ICL_DONT_LOAD_NAVIGATION_CSS', true);
 		define('ICL_DONT_LOAD_LANGUAGES_JS', true);
 	}
 }
-add_action( 'init', 'fbtheme_wpml_dont_load' );
+add_action( 'init', 'studio2let_wpml_dont_load' );
 
 /**
  * Load string translations
  */
-if ( ! function_exists( 'fbtheme_load_textdomain' ) ) {
-	function fbtheme_load_textdomain()  {
+if ( ! function_exists( 'studio2let_load_textdomain' ) ) {
+	function studio2let_load_textdomain()  {
 		global $sitepress;
 		$locale='en_US';
 		if ( $sitepress ) {
@@ -194,33 +163,19 @@ if ( ! function_exists( 'fbtheme_load_textdomain' ) ) {
 		}
 		$child_mo = ROJAK_CHILD . 'languages/' . $locale . '.mo';
 		if ( file_exists( $child_mo ) ) {
-			load_theme_textdomain( 'fbtheme', ROJAK_CHILD . 'languages/');
+			load_theme_textdomain( 'studio2let', ROJAK_CHILD . 'languages/');
 		} else {
-			load_theme_textdomain( 'fbtheme', ROJAK_PARENT . 'languages/');
+			load_theme_textdomain( 'studio2let', ROJAK_PARENT . 'languages/');
 		}
 	}
 }
-add_action('after_setup_theme', 'fbtheme_load_textdomain');
-
-
-/**
- * Weather js using yahoo API
- */
-if ( ! function_exists( 'fbtheme_yahoo_weather' ) ) {
-	function fbtheme_yahoo_weather() {
-		$weather_js =  'js/FB-weather' .$GLOBALS['rojak_templates_minify']. '.js';
-		if ( file_exists( ROJAK_PARENT . $weather_js ) ) {
-			wp_enqueue_script( 'rojak-weather', ROJAK_PARENT_URI . $weather_js, array(), '', true );
-		}
-	}
-}
-add_action( 'rojak_tpl_after_core_js', 'fbtheme_yahoo_weather' );
+add_action('after_setup_theme', 'studio2let_load_textdomain');
 
 /**
  * Image sizes
  */
-if (!function_exists('fbtheme_image_sizes')) {
-	function fbtheme_image_sizes() {
+if (!function_exists('studio2let_image_sizes')) {
+	function studio2let_image_sizes() {
 
 		// add_image_size( 'size-name', 220, 180, true );
 		// 220 pixels wide by 180 pixels tall, crop image
@@ -242,97 +197,27 @@ if (!function_exists('fbtheme_image_sizes')) {
 
 	}
 }
-add_action( 'init', 'fbtheme_image_sizes' );
+add_action( 'init', 'studio2let_image_sizes' );
 
 /**
  * Add Map JS
  */
-if ( ! function_exists( 'ing_enqueue_map_js' ) ) {
-	function ing_enqueue_map_js() {
-		wp_register_script( 'google-map', "//maps.googleapis.com/maps/api/js?key=AIzaSyAp16-BNgTll5F3xOW6fuClAbjP0qe4pQo&amp;callback=initMap", array(), '', true );
+if ( ! function_exists( 'studio2let_enqueue_map_js' ) ) {
+	function studio2let_enqueue_map_js() {
+		wp_register_script( 'google-map', "//maps.googleapis.com/maps/api/js?key=AIzaSyAp16-BNgTll5F3xOW6fuClAbjP0qe4pQo", array(), '', true );
 		wp_enqueue_script(  'google-map' );
 	}
 }
-add_action( 'rojak_tpl_after_page_js', 'ing_enqueue_map_js' );
+add_action( 'rojak_tpl_after_page_js', 'studio2let_enqueue_map_js' );
 
-require_once get_template_directory() . '/inc/faw-assets.php';
-// // /**
-// //  * tpl-assets functions
-// //  */
-// // require_once get_template_directory() . '/inc/fbtheme-assets.php';
-
-// /**
-//  * on save functions
-//  * these will generate json or html files
-//  */
-// require_once get_template_directory() . '/inc/save-menu.php';
-// // require_once get_template_directory() . '/inc/save-post-hotel.php';
-// // require_once get_template_directory() . '/inc/save-post-country.php';
-// // require_once get_template_directory() . '/inc/save-post-tpl-home.php';
-// // require_once get_template_directory() . '/inc/save-post-tpl-global-offers.php';
-
+require_once get_template_directory() . '/inc/assets.php';
 // /**
 //  * Custom Post hotel
 //  */
 require_once get_template_directory() . '/inc/custom-post-hotel.php';
 
 // /**
-//  * wp_footer hooks
-//  */
-// require_once get_template_directory() . '/inc/functions-wp-footer.php';
-
-// /**
-//  * wp_seo hooks
-//  */
-// require_once get_template_directory() . '/inc/functions-wp-seo.php';
-
-// /**
-//  * Structured Data for Search Engines
-//  */
-// require_once get_template_directory() . '/inc/functions-structured-data.php';
-
-// *
-//  * santika-admin
-
-// require_once get_template_directory() . '/inc/fbtheme-admin.php';
-
-// /**
-//  * Load Ixternal Classes
-//  */
-// require_once get_template_directory() . '/inc/class-fbtheme-walker-footer-nav-five.php';
-// require_once get_template_directory() . '/inc/class-fbtheme-walker-footer-legal.php';
-
-// /**
-//  * Load External Classes
-//  */
-// require_once get_template_directory() . '/inc/class-mobile-detect.php';
-
-// /**
-//  * Load shortcodes
-//  */
-// require_once get_template_directory() . '/inc/fbtheme-shortcodes.php';
-
-// /**
-//  * Load Breadcrumb function
-//  */
-// require_once get_template_directory() . '/inc/fbtheme-breadcrumb.php';
-
-// /**
 //  * Metabox
 //  */
-require_once get_template_directory() . '/inc/fbtheme-metabox.php';
-require_once get_template_directory() . '/inc/ngz-utilities.php';
-// /**
-//  * Soap
-//  */
-// require_once get_template_directory() . '/inc/fbtheme-soap.php';
-
-// /**
-//  * TrustYou
-//  */
-// require_once get_template_directory() . '/inc/fbtheme-trustyou.php';
-
-// /**
-//  * Viator API
-//  */
-// require_once get_template_directory() . '/inc/fbtheme-viator.php';
+require_once get_template_directory() . '/inc/metabox.php';
+require_once get_template_directory() . '/inc/utilities.php';

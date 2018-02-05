@@ -1,15 +1,9 @@
-#=include validate.js
-#=include gmap.js
-#=include fbtheme-init.js
+#=include _validate.js
+#=include _gmap.js
+#=include _init.js
 
-#=include ../../bower/jquery-ui/ui/core.js
-#=include ../../bower/jquery-ui/ui/effect.js
 #=include ../../bower/jquery-ui/ui/datepicker.js
-#=include ../../bower/moment/min/moment.min.js
-#=include ../../bower/slick.js/slick/slick.min.js
 #=include ../../bower/magnific-popup/dist/jquery.magnific-popup.js
-
-
 
 // -----------------------------------------
 // DOC READY
