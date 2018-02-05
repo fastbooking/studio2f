@@ -9,7 +9,6 @@
 require_once( trailingslashit( get_template_directory() ) . 'library/rojak.php' );
 new Rojak();
 
-define('TEMPLATE_PREFIX', 'studio2let');
 define('STUDIO_WEBSDK_TOKEN', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOiJeLiokIiwicHJvcGVydGllcyI6Il4odWtsb24yMDM4OXx1a2xvbjI0OTc0KSQiLCJncm91cHMiOiJeJCIsImZvciI6Imdlbi11c2VyIiwiaWF0IjoxNTE2OTUyNTQ4LCJqdGkiOiI3ZWE5Mzc1Mi1hN2IzLTQwNDMtYjQ5ZC02Yzk0MDI1YzNjODAifQ.a6MtEKYPriJ45uWGzMT_o5hAGNeb3UruZyM6OfGEyuw');
 
 add_action( 'after_setup_theme', 'studio2let_setup' );
@@ -209,8 +208,6 @@ if ( ! function_exists( 'studio2let_enqueue_map_js' ) ) {
 	}
 }
 add_action( 'rojak_tpl_after_page_js', 'studio2let_enqueue_map_js' );
-
-require_once get_template_directory() . '/inc/assets.php';
 // /**
 //  * Custom Post hotel
 //  */
@@ -220,4 +217,4 @@ require_once get_template_directory() . '/inc/custom-post-hotel.php';
 //  * Metabox
 //  */
 require_once get_template_directory() . '/inc/metabox.php';
-require_once get_template_directory() . '/inc/utilities.php';
+require_once get_template_directory() . '/inc/utils.php';

@@ -1,8 +1,4 @@
 <?php
-/**
- * Add Base JS
- */
-
 
 function add_socials_fb_options($fields) {
     $fields[]=array (
@@ -51,5 +47,22 @@ if ( ! function_exists( 'studio2let_get_websdk_currency' ) ) {
 			default:
 				return 'USD';
 		}
+	}
+}
+
+
+if ( ! function_exists( 'studio2let_get_qs_text' ) ) {
+	function studio2let_get_qs_text() {
+		$txt_defaults = array(
+			'choose'        => __( 'Destination / Hotels', 'studio2let' ),
+			'submit'        => __( 'Book today', 'studio2let' ),
+			'cancel'        => __( 'Cancel Booking', 'studio2let' ),
+			'promo'  		=> __( 'Promo Code', 'studio2let' ),
+			'arrival'       => __( 'Arrival', 'studio2let' ),
+			'departure'     => __( 'Departure', 'studio2let'),
+		);
+
+		$txt_filter = apply_filters( 'studio2let_text_qs', false );
+		return wp_parse_args( $txt_filter, $txt_defaults );
 	}
 }

@@ -18,7 +18,7 @@ $hotel_studio_img = '<img src="'.ROJAK_PARENT_URI.'/img/upload/home-post1.jpg" a
 $hotel_info['html'] = '<div class="map-infowindow"><h4 class="map_title">'.$infowindow_title.'</h4>
                        <div class="row"><div class="col-md-6">'.$hotel_studio_img.'</div>
                          <div class="col-md-6">'.$infowindow_desc.'</div></div>
-                       <div class="map-address"><a class="btn btn-red" href="'.$data['hotel_url'].'" target="_blank" title="'.__('Visit site',TEMPLATE_PREFIX).'">'.__('Visit site',TEMPLATE_PREFIX).'</a>'.$htmladdress.'</div>';
+                       <div class="map-address"><a class="btn btn-red" href="'.$data['hotel_url'].'" target="_blank" title="'.__('Visit site','studio2let').'">'.__('Visit site','studio2let').'</a>'.$htmladdress.'</div>';
                        
 $hotel_info['title']  = ($data['map_title']) ? $data['map_title'] : $data['hotel_name'];
 $hotel_info['latitude']  = $lat;
@@ -101,7 +101,7 @@ $others_studio = get_posts($args_studio2let);
     $hotel_studio_image = wp_get_attachment_image_src( get_post_thumbnail_id( $studio->ID ) , full );
     // // Hotel Albar URL
     $hotel_studio_URL = ($infos['hotel_url'][0]!="") ? $infos['hotel_url'][0] : '';
-    $url_str = __('Visit site',TEMPLATE_PREFIX);
+    $url_str = __('Visit site','studio2let');
     $hotel_desc = $studio->post_content;
     // // Hotel Albar HTML for the Google Maps infowindow
     $hotel_studio_HTML = '<div class="map-infowindow">
@@ -136,7 +136,7 @@ $others_studio = get_posts($args_studio2let);
 </script>
 <section class="block">
     <div class="container">
-        <h3 class="block-title"><?php _e('How to find us',TEMPLATE_PREFIX) ?></h3>
+        <h3 class="block-title"><?php _e('How to find us','studio2let') ?></h3>
         <div class="row">
             <div class="col-md-12"> 
                 <div id="map-canvas" class="map-canvas js-map-canvas"></div>

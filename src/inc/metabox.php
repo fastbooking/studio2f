@@ -46,23 +46,23 @@ function register_meta_boxes( $meta_boxes ){
 	$post_template = get_post_meta( $postID, '_wp_page_template', true );
 	if ( rojak_str_contains( $post_template, 'tpl-home.php' ) ) {
 		$meta_boxes[] = array(
-			'title'  => __( 'Section Intro',TEMPLATE_PREFIX),
+			'title'  => __( 'Section Intro','studio2let'),
 			'post_types' => array('page'),
 			'context'    => 'normal',
 			'priority'   => 'high',
 			'fields' => array(
 				array(
-					'name' => __('Title',TEMPLATE_PREFIX),
+					'name' => __('Title','studio2let'),
 					'id'   => 'intro_title',
 					'type' => 'text',
-					'desc' => __('Welcome to Studio 2 let',TEMPLATE_PREFIX),
+					'desc' => __('Welcome to Studio 2 let','studio2let'),
 				)
 			),
 		);
 
 		$meta_boxes[] = array(
 			'id' => 'push_offers',
-			'title' =>  __( 'Push Offers' , TEMPLATE_PREFIX) ,
+			'title' =>  __( 'Push Offers' , 'studio2let') ,
 			'post_types' => array( 'page' ),
 			'context' => 'normal',
 			'priority' => 'high',
@@ -72,20 +72,20 @@ function register_meta_boxes( $meta_boxes ){
 					'type' => 'group',
 					'clone'  => true,
 					'sort_clone' => true,
-					'name'  => '<b>' . __( 'Offers', TEMPLATE_PREFIX ) . '</b>',
+					'name'  => '<b>' . __( 'Offers', 'studio2let' ) . '</b>',
 					'fields' => array(
 						array(
 							'id'          => 'push_offers_hotel',
-							'name'        => __('Hotel offer is coming from', TEMPLATE_PREFIX ),
-							'placeholder' => __( 'Select an hotel', TEMPLATE_PREFIX ),
+							'name'        => __('Hotel offer is coming from', 'studio2let' ),
+							'placeholder' => __( 'Select an hotel', 'studio2let' ),
 							'type'        => 'select_advanced',
 							'options'     => (!empty($hotelslist) ? $hotelslist : array()),
 							'select_all_none' => true,	
 						),
 						array(
 							'id'          => 'push_offers_code',
-							'name'        => __('Offer code',TEMPLATE_PREFIX),
-							'placeholder' => __( 'Enter the code of the offer', TEMPLATE_PREFIX ),
+							'name'        => __('Offer code','studio2let'),
+							'placeholder' => __( 'Enter the code of the offer', 'studio2let' ),
 							'type'        => 'text',
 						)
 					),
@@ -95,69 +95,69 @@ function register_meta_boxes( $meta_boxes ){
 
 
 		$meta_boxes[] = array(
-			'title'  => __( 'Section Services',TEMPLATE_PREFIX ),
+			'title'  => __( 'Section Services','studio2let' ),
 			'post_types' => array('page'),
 			'context'    => 'normal',
 			'priority'   => 'high',
 			'fields' => array(
 				array(
-					'name' => __('Service title',TEMPLATE_PREFIX),
+					'name' => __('Service title','studio2let'),
 					'id'   => 'ser_title',
 					'type' => 'text',
-					'desc' => __('Lorem ipsum Lorem ipsum',TEMPLATE_PREFIX),
+					'desc' => __('Lorem ipsum Lorem ipsum','studio2let'),
 				),
 				array(
-					'name' => __('Service mid content',TEMPLATE_PREFIX),
+					'name' => __('Service mid content','studio2let'),
 					'id'   => 'ser_mid_content',
 					'type' => 'wysiwyg',
-					'desc' => __('Lorem ipsum Lorem ipsum',TEMPLATE_PREFIX),
+					'desc' => __('Lorem ipsum Lorem ipsum','studio2let'),
 				),
 				array(
-					'name' => __('Service content',TEMPLATE_PREFIX),
+					'name' => __('Service content','studio2let'),
 					'id'   => 'ser_content',
 					'type' => 'wysiwyg',
-					'desc' => __('Lorem ipsum Lorem ipsum',TEMPLATE_PREFIX)
+					'desc' => __('Lorem ipsum Lorem ipsum','studio2let')
 				)
 			),
 		);
 
 		$meta_boxes[] = array(
-			'title'  => __('Coropate Client',TEMPLATE_PREFIX),
+			'title'  => __('Coropate Client','studio2let'),
 			'post_types' => array('page'),
 			'context'    => 'normal',
 			'priority'   => 'high',
 			'fields' => array(
 				array(
-					'name' => __('Coropate title',TEMPLATE_PREFIX),
+					'name' => __('Coropate title','studio2let'),
 					'id'   => 'cor_title',
 					'type' => 'text',
-					'desc' => __('Lorem ipsum Lorem ipsum',TEMPLATE_PREFIX)
+					'desc' => __('Lorem ipsum Lorem ipsum','studio2let')
 				),
 				array(
-					'name' => __('Coropate mid content',TEMPLATE_PREFIX),
+					'name' => __('Coropate mid content','studio2let'),
 					'id'   => 'cor_mid_content',
 					'type' => 'wysiwyg',
-					'desc' => __('Lorem ipsum Lorem ipsum',TEMPLATE_PREFIX)
+					'desc' => __('Lorem ipsum Lorem ipsum','studio2let')
 				),
 				array(
-					'name' => __('Coropate content',TEMPLATE_PREFIX),
+					'name' => __('Coropate content','studio2let'),
 					'id'   => 'cor_content',
 					'type' => 'wysiwyg',
-					'desc' => __('Lorem ipsum Lorem ipsum',TEMPLATE_PREFIX),
+					'desc' => __('Lorem ipsum Lorem ipsum','studio2let'),
 				)
 			),
 		);
 		$meta_boxes[] = array(
-			'title'  => __('Thank you message',TEMPLATE_PREFIX),
+			'title'  => __('Thank you message','studio2let'),
 			'post_types' => array('page'),
 			'context'    => 'normal',
 			'priority'   => 'high',
 			'fields' => array(
 				array(
-					'name' => __('Message',TEMPLATE_PREFIX),
+					'name' => __('Message','studio2let'),
 					'id'   => 'contact_message',
 					'type' => 'wysiwyg',
-					'desc' => __('thanks for contacting us! We will get back to you soon!',TEMPLATE_PREFIX)
+					'desc' => __('thanks for contacting us! We will get back to you soon!','studio2let')
 				)
 			),
 		);
@@ -165,95 +165,95 @@ function register_meta_boxes( $meta_boxes ){
 
 	$meta_boxes[] = array(
 		'id' => 'hotel',
-		'title' =>  __('Hotel Information',TEMPLATE_PREFIX),
+		'title' =>  __('Hotel Information','studio2let'),
 		'pages' => array( 'hotel_post' ),
 		'context' => 'normal',
 		'priority' => 'high',
 		'fields' => array(
 			array(
 				'id'            => 'hotel_fb_hid',
-				'name'          => __('Hotel FB HID',TEMPLATE_PREFIX),
+				'name'          => __('Hotel FB HID','studio2let'),
 				'type'          => 'text',
 				'required'		=> true
 			),
 			array(
 				'id'            => 'hotel_fb_connectname',
-				'name'          => __('Hotel FB Connectname',TEMPLATE_PREFIX),
+				'name'          => __('Hotel FB Connectname','studio2let'),
 				'type'          => 'text',
 				'required'		=> true
 			),
 			array(
 				'id'            => 'hotel_address',
-				'name'          => __('Hotel Address',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Address','studio2let'),
 				'type'          => 'text',
 				'required'		=>	true
 			),
 			array(
 				'id'            => 'hotel_latlng',
-				'name'          => __('Hotel LatLng',TEMPLATE_PREFIX),
+				'name'          => __('Hotel LatLng','studio2let'),
 				'type'          => 'text',
 				'required'		=>	true
 			),
 			array(
 				'id'            => 'hotel_map_zoom',
-				'name'          => __('Hotel Map Zoom?',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Map Zoom?','studio2let'),
 				'type'          => 'text'
 			),
 			array(
 				'id'            => 'hotel_phone',
-				'name'          => __('Hotel Phone',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Phone','studio2let'),
 				'type'          => 'text',
 				'required'		=>	true
 			),
 			array(
 				'id'            => 'hotel_url',
-				'name'          => __('Hotel url',TEMPLATE_PREFIX),
+				'name'          => __('Hotel url','studio2let'),
 				'type'          => 'text',
 				'required'		=>	true
 			),
 			array(
 				'id'            => 'hotel_fax',
-				'name'          => __('Hotel Fax',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Fax','studio2let'),
 				'type'          => 'text'
 			),
 			array(
 				'id'            => 'hotel_email',
-				'name'          => __('Hotel Email',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Email','studio2let'),
 				'type'          => 'text',
 				'required'		=>	true
 			),
 			array(
 				'id'            => 'hotel_receiving_email',
-				'name'          => __('Hotel Receiving Email',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Receiving Email','studio2let'),
 				'type'          => 'text'
 			),
 			array(
 				'id'            => 'hotel_facebook',
-				'name'          => __('Hotel Facebook',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Facebook','studio2let'),
 				'type'          => 'text'
 			),
 			array(
 				'id'            => 'hotel_google_plus',
-				'name'          => __('Hotel Google Plus',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Google Plus','studio2let'),
 				'type'          => 'text'
 			),
 			array(
 				'id'            => 'hotel_twitter',
-				'name'          => __('Hotel Twitter',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Twitter','studio2let'),
 				'type'          => 'text'
 			),
 			array(
 				'id'            => 'hotel_instagram',
-				'name'          => __('Hotel Instagram',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Instagram','studio2let'),
 				'type'          => 'text'
 			),
 			array(
 				'id'            => 'hotel_youtube',
-				'name'          => __('Hotel Youtube',TEMPLATE_PREFIX),
+				'name'          => __('Hotel Youtube','studio2let'),
 				'type'          => 'text'
 			),
 			array(
-				'name' => __('Hotel Feature',TEMPLATE_PREFIX),
+				'name' => __('Hotel Feature','studio2let'),
 				'id'   => 'hotel_feature',
 				'type' => 'checkbox'
 			),

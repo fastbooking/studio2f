@@ -2,12 +2,12 @@
 function comment_post_type() {
 	$args = array(
 		'labels' => array(
-			'name'          => __( 'Hotels', TEMPLATE_PREFIX ),
-			'singular_name' => __( 'Hotel', TEMPLATE_PREFIX ),
-			'add_new'  => __( 'New Hotel', TEMPLATE_PREFIX ),
-			'add_new_item'  => __( 'Add New Hotel', TEMPLATE_PREFIX ),
-			'edit_item'     => __( 'Edit Hotel', TEMPLATE_PREFIX ),
-			'view_item'     => __( 'View Hotel', TEMPLATE_PREFIX )
+			'name'          => __( 'Hotels', 'studio2let' ),
+			'singular_name' => __( 'Hotel', 'studio2let' ),
+			'add_new'  => __( 'New Hotel', 'studio2let' ),
+			'add_new_item'  => __( 'Add New Hotel', 'studio2let' ),
+			'edit_item'     => __( 'Edit Hotel', 'studio2let' ),
+			'view_item'     => __( 'View Hotel', 'studio2let' )
 		),
 		'public'      => true,
 		'has_archive' => true,

@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package fbtheme
+ * @package studio2let
  */
 
 get_header(); ?>

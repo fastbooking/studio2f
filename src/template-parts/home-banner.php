@@ -23,7 +23,7 @@
             <a href="#" title="<?php echo $title; ?>">
                 <div class="header-banner__post_image" style="background-image: url('<?php echo $img[0] ?>');"></div>
                 <div class="header-banner__post_content">
-                    <span><?php echo __('Discover',TEMPLATE_PREFIX) ?></span>
+                    <span><?php echo __('Discover','studio2let') ?></span>
                     <h2><?php echo $title; ?></h2>
                     <hr class="post-reline" />
                 </div>

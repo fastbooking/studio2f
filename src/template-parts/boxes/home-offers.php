@@ -15,7 +15,7 @@
 ?>
 <section class="block">
     <div class="container">
-        <h3 class="block-title"><?php _e('Special Offers',TEMPLATE_PREFIX) ?></h3>
+        <h3 class="block-title"><?php _e('Special Offers','studio2let') ?></h3>
         <div class="row">
             <?php
                 foreach ($offers_to_display as $j => $item) {
@@ -41,10 +41,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <a class="btn btn-default js-see-more" href="javascript:void(0)" title="<?php _e('See More',TEMPLATE_PREFIX) ?>"><?php _e('See More',TEMPLATE_PREFIX) ?></a>
+                                        <a class="btn btn-default js-see-more" href="javascript:void(0)" title="<?php _e('See More','studio2let') ?>"><?php _e('See More','studio2let') ?></a>
                                     </div>
                                     <div class="col">
-                                        <a class="btn btn-red" href="<?php echo $offer_booking; ?>" title="<?php _e('Book Now',TEMPLATE_PREFIX) ?>"><?php _e('Book Now',TEMPLATE_PREFIX) ?></a>
+                                        <a class="btn btn-red" href="<?php echo $offer_booking; ?>" title="<?php _e('Book Now','studio2let') ?>"><?php _e('Book Now','studio2let') ?></a>
                                     </div>
                                 </div>
                             </div>

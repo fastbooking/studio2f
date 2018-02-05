@@ -4,7 +4,7 @@
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-<script>var $fbtheme_url = "<?php echo trailingslashit(get_bloginfo('wpurl')); ?>";</script>
+<script>var $studio2let_url = "<?php echo trailingslashit(get_bloginfo('wpurl')); ?>";</script>
 <?php wp_head(); ?>
 <style>html.hidden { visibility: hidden; }</style>
 <noscript>
